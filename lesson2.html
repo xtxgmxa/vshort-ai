@@ -1,36 +1,338 @@
-﻿<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第二堂｜拆解高手作品－小導演任務</title><style id="gate-boot">html:not(.gate-ready) body>*:not(#gate-overlay){visibility:hidden!important}</style><script src="./auth.js"></script><script src="./toolbox.js"></script><script>CourseGate.guardLesson()</script>
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二堂｜拆解高手作品－小導演任務</title>
+<style id="gate-boot">html:not(.gate-ready) body>*:not(#gate-overlay){visibility:hidden!important}</style>
+<script src="./auth.js"></script>
+<script src="./toolbox.js"></script>
+<script>CourseGate.guardLesson()</script>
 <style>
-:root{--bg:#101724;--panel:#1a2538;--ink:#f2f5fc;--muted:#aab7ca;--mint:#72efb4;--purple:#b8a2ff;--line:#34435b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.6}button,input,textarea,select{font:inherit}button,a.button{cursor:pointer;border:1px solid var(--mint);background:var(--mint);color:#101724;border-radius:8px;padding:10px 18px;font-weight:700;text-decoration:none}.quiet{background:transparent!important;color:var(--ink)!important;border-color:var(--line)!important;font-weight:400}header{display:flex;align-items:center;justify-content:space-between;padding:14px 3vw;border-bottom:1px solid var(--line);gap:12px;background:#101724;position:sticky;top:0;z-index:5}header nav{display:flex;gap:8px;flex-wrap:wrap}.author{color:var(--mint);font-size:14px;margin-left:10px}.course-back{color:var(--mint);font-size:14px;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:6px}main{max-width:1080px;margin:auto;padding:28px 30px 120px}.screen[hidden]{display:none}.screen{animation:fade .3s ease}.eyebrow{color:var(--mint);font-weight:700;font-size:15px}.eyebrow span{float:right;color:var(--muted);font-weight:400}h1{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px}.question{font-size:clamp(20px,2.3vw,32px);line-height:1.45;margin:0 0 16px}p{font-size:20px;margin:6px 0 12px}.instruction{font-size:16px;color:var(--muted)}.reveal-controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 0}.reveal{display:none;background:var(--panel);border-left:4px solid var(--purple);padding:18px 22px;margin-top:14px;border-radius:0 10px 10px 0}.reveal.open{display:block}.reveal.answer{border-color:var(--mint)}.reveal h3{margin:2px 0 10px}.reveal li{margin-bottom:6px;font-size:18px}.visual-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.visual-row figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}.visual-row img{width:100%;height:120px;object-fit:cover;display:block}.visual-row figcaption{padding:8px 10px;color:var(--muted);font-size:13px}.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.compare .box{background:var(--panel);padding:14px;border-top:4px solid var(--line);border-radius:8px}.compare .good{border-color:var(--mint)}.compare .bad{border-color:#ffbe72}.anatomy{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}.anatomy div{background:var(--panel);padding:12px;border-top:3px solid var(--purple);border-radius:8px;font-size:16px}.anatomy b{display:block;color:var(--mint);font-size:14px;margin-bottom:4px}.quiz-options{display:flex;gap:12px;flex-wrap:wrap}.quiz-options button{background:var(--panel);color:var(--ink);border-color:var(--line);font-size:19px}.quiz-options button.chosen{background:#204137;border-color:var(--mint)}.feedback{font-size:18px;color:var(--mint)}.feedback:empty{display:none}footer{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;gap:18px;justify-content:space-between;background:#101724ee;padding:14px 3vw;border-top:1px solid var(--line);z-index:5}.progress{height:3px;position:absolute;top:0;left:0;background:var(--mint)}footer span{color:var(--muted);font-size:15px}.keys{font-size:13px}dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:760px;width:90vw}dialog::backdrop{background:#000a}.chapter-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.chapter-list button{text-align:left;padding:14px}.chapter-list small{display:block;color:var(--muted)}@keyframes fade{from{opacity:0}to{opacity:1}}@media(max-width:760px){main{padding:20px 16px 120px}.visual-row,.anatomy,.compare,.chapter-list{grid-template-columns:1fr}.visual-row img{height:170px}.keys{display:none}}
-</style></head><body>
-<header><strong>小導演任務 <small class="author">作者 Mr.Bill</small></strong><nav><a class="course-back" href="./index.html">← 課程目錄</a><button class="quiet" onclick="document.getElementById('chapters').showModal()">章節導覽</button><button class="quiet" onclick="DirectorToolbox.open()">🧰 工具箱</button><button class="quiet" onclick="fullscreen()" id="fsBtn">全螢幕</button></nav></header>
+:root{--bg:#0c1422;--panel:#162033;--ink:#f4f1df;--muted:#a9b5c8;--mint:#7dffb3;--gold:#f0c75e;--purple:#c4a8ff;--line:#3a4d6a;--danger:#ff8f7a}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 20% 0%,#1a2740,#0c1422 55%);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:2px solid #101724;background:linear-gradient(#9cffc7,#58e39a);color:#102018;border-radius:10px;padding:10px 16px;font-weight:800;box-shadow:3px 3px 0 #0007}
+button:hover{transform:translateY(-1px)}
+.quiet{background:transparent!important;color:var(--ink)!important;border-color:var(--line)!important;box-shadow:none;font-weight:600}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 3vw;border-bottom:2px solid var(--line);background:#101a2bcc;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
+header nav{display:flex;gap:8px;flex-wrap:wrap}
+.author{color:var(--mint);font-size:13px;margin-left:8px}
+.course-back{color:var(--mint);text-decoration:none;border:2px solid var(--line);padding:6px 10px;border-radius:8px}
+.hud{display:flex;gap:12px;align-items:center;padding:8px 3vw;background:#132038;border-bottom:2px solid var(--line);font-size:14px;color:var(--muted)}
+.hud b{color:var(--gold)}
+.xp{flex:1;height:12px;background:#0a101a;border:2px solid var(--line);border-radius:8px;overflow:hidden}
+.xp>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#fff3b0);transition:width .35s}
+main{max-width:1100px;margin:auto;padding:22px 24px 130px}
+.screen[hidden]{display:none}
+.screen{animation:enter .45s ease}
+.dq-win{background:linear-gradient(#1b2a44,#152238);border:3px solid #7ea0d4;border-radius:14px;box-shadow:0 0 0 3px #101724,0 18px 40px #0008;padding:18px 20px;margin-bottom:14px}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:.04em}
+.eyebrow span{float:right;color:var(--muted);font-weight:600}
+h1{font-size:clamp(26px,3vw,40px);margin:10px 0 12px}
+.question{font-size:clamp(20px,2.2vw,30px);margin:0 0 14px;color:#fff}
+.instruction{color:var(--muted);font-size:16px}
+.term-link{display:inline!important;border:0!important;border-bottom:2px dashed var(--mint)!important;border-radius:0!important;padding:0 1px!important;background:transparent!important;color:inherit!important;box-shadow:none!important;font:inherit!important;font-weight:inherit!important;cursor:help}
+.term-link:hover{color:var(--mint)!important;background:#7dffb322!important}
+.visual-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.visual-row figure{margin:0;border:2px solid var(--line);border-radius:10px;overflow:hidden;background:#101a2b}
+.visual-row img{width:100%;height:110px;object-fit:cover;display:block}
+.visual-row figcaption{padding:7px 9px;font-size:13px;color:var(--muted)}
+.reveal-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.reveal{display:none;margin-top:12px;padding:14px 16px;border-left:4px solid var(--purple);background:#101a2b;border-radius:0 10px 10px 0}
+.reveal.open{display:block;animation:slide .35s ease}
+.reveal.answer{border-color:var(--mint)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare .box{background:#101a2b;border:2px solid var(--line);border-radius:10px;padding:12px}
+.compare .good{border-color:var(--mint)}
+.compare .bad{border-color:var(--danger)}
+.game-board{background:#0d1524;border:3px solid var(--gold);border-radius:12px;padding:14px;margin:12px 0;position:relative;overflow:hidden}
+.game-board::before{content:"QUEST";position:absolute;top:8px;right:12px;color:#f0c75e55;font-weight:900;letter-spacing:.2em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{background:#243552;border:2px solid var(--line);color:var(--ink);box-shadow:none;font-weight:700}
+.chip.on,.chip.right{border-color:var(--mint);background:#1d3d33;color:var(--mint)}
+.chip.wrong{border-color:var(--danger);background:#3a2420;animation:shake .35s}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0}
+.slot{min-height:72px;border:2px dashed var(--line);border-radius:10px;padding:8px;text-align:center;background:#101a2b}
+.slot.filled{border-style:solid;border-color:var(--mint)}
+.slot small{display:block;color:var(--gold);font-size:12px}
+.eye-stage{position:relative;height:220px;border:2px solid var(--line);border-radius:12px;overflow:hidden;cursor:crosshair}
+.eye-stage img{width:100%;height:100%;object-fit:cover}
+.eye-stage .mark{position:absolute;width:28px;height:28px;border:3px solid var(--mint);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 18px #7dffb388;animation:pulse 1s infinite}
+.pace-lane{display:flex;gap:8px;margin:12px 0;min-height:64px}
+.pace-lane span{flex:1;text-align:center;padding:14px 6px;border-radius:10px;font-weight:800;border:2px solid var(--line)}
+.p-fast{background:#1d3d33;color:var(--mint)}.p-mid{background:#2b2445;color:var(--purple)}.p-stop{background:#1a2538;color:var(--muted)}
+.feedback{min-height:1.4em;color:var(--mint);font-size:17px;margin-top:8px}
+.feedback.bad{color:var(--danger)}
+footer{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 3vw;background:#0f1828f2;border-top:2px solid var(--line);z-index:30}
+.progress{position:absolute;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--mint));width:0}
+footer span{color:var(--muted)}
+dialog{background:#162033;color:var(--ink);border:3px solid #7ea0d4;border-radius:14px;padding:22px;max-width:760px;width:92vw}
+dialog::backdrop{background:#000a}
+.chapter-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.chapter-list button{text-align:left}
+.chapter-list small{display:block;color:var(--muted);font-weight:600}
+#wordPopup{width:min(520px,92vw);border-color:var(--mint)}
+#wordPopup h2{color:var(--mint);margin:6px 0}
+.unlock-toast{position:fixed;top:88px;right:18px;z-index:50;background:var(--gold);color:#1a1200;padding:12px 18px;border-radius:10px;font-weight:900;border:2px solid #101724;box-shadow:4px 4px 0 #0007;animation:toast .5s ease}
+.burst{position:fixed;width:8px;height:8px;background:var(--gold);pointer-events:none;z-index:60;animation:spark .8s ease-out forwards}
+@keyframes enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.15)}}
+@keyframes toast{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+@media(max-width:760px){main{padding:16px 14px 130px}.visual-row,.slots,.compare,.chapter-list{grid-template-columns:1fr 1fr}.visual-row img{height:90px}.keys{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <strong>小導演任務 <small class="author">作者 Mr.Bill</small></strong>
+  <nav>
+    <a class="course-back" href="./index.html">← 課程目錄</a>
+    <button class="quiet" onclick="document.getElementById('chapters').showModal()">任務地圖</button>
+    <button class="quiet" onclick="DirectorToolbox.open()">🧰 工具箱</button>
+    <button class="quiet" id="fsBtn" onclick="fullscreen()">全螢幕</button>
+  </nav>
+</header>
+<div class="hud"><span>第二堂任務</span><div class="xp" aria-hidden="true"><i id="xpBar"></i></div><b id="xpText">EXP 0</b></div>
 <main>
-<section class="screen" id="s0"><div class="eyebrow">01 / 今天不重複第一堂 <span>00-10 分</span></div><h1>第二堂要做的事：拆作品，不講觀念定義</h1><div class="question">第一堂是「我會選」，第二堂是「我會拆別人的選擇」。</div><div class="visual-row"><figure><img src="./assets/rivals-view.webp" alt="RIVALS 視角"><figcaption>遊戲題材</figcaption></figure><figure><img src="./assets/travel.webp" alt="旅遊題材"><figcaption>旅遊題材</figcaption></figure><figure><img src="./assets/food.webp" alt="美食題材"><figcaption>美食題材</figcaption></figure><figure><img src="./assets/school.webp" alt="校園題材"><figcaption>校園題材</figcaption></figure></div><div class="reveal-controls"><button class="quiet" onclick="reveal('h0',this)">想一想</button><button onclick="reveal('a0',this)">看答案</button></div><div id="h0" class="reveal"><p>今天不是再學一次「什麼是 Hook」。而是要看高手怎麼把 Hook 放在對的位置。</p></div><div id="a0" class="reveal answer"><h3>這堂的輸出</h3><ul><li>你能拆出別人片子的 5 段骨架</li><li>你能說出剪輯判斷，不只說「好看」</li><li>你會用工具箱做拆片筆記，下一堂直接拿去剪映</li></ul></div></section>
 
-<section class="screen" id="s1" hidden><div class="eyebrow">02 / 看片不是看熱鬧 <span>10-22 分</span></div><h1>高手在做 3 件事</h1><div class="question">不是特效多，而是判斷準。</div><div class="compare"><div class="box good"><h3>1. 先給任務</h3><p>觀眾 1 秒內知道「這支要看什麼」。</p></div><div class="box good"><h3>2. 控制注意力</h3><p>重要畫面留住，不重要畫面快轉或刪。</p></div><div class="box good"><h3>3. 把結果交代完</h3><p>觀眾不會看完還搞不懂發生什麼。</p></div><div class="box bad"><h3>反面</h3><p>一直打招呼、一直快剪、最後沒結尾。</p></div></div><div class="reveal-controls"><button class="quiet" onclick="reveal('h1',this)">想一想</button><button onclick="reveal('a1',this)">看答案</button><button class="quiet" onclick="reveal('w1',this)">為什麼</button></div><div id="h1" class="reveal"><p>你以前看過很多片，現在只是把直覺講清楚。</p></div><div id="a1" class="reveal answer"><h3>第二堂關鍵</h3><p>把「我覺得好看」翻譯成「哪裡讓我想看下去」。這是創作者語言。</p></div><div id="w1" class="reveal"><p>這步做好，後面進剪映才知道每個按鈕要解決什麼問題。</p></div></section>
+<section class="screen" id="s0">
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 01 <span>開場</span></div>
+    <h1>今天不是背名詞，是當拆解勇者</h1>
+    <div class="question">第一堂你學會「選」。第二堂要學會「拆」：高手為什麼這樣剪？</div>
+    <div class="visual-row">
+      <figure><img src="./assets/rivals-view.webp" alt="遊戲"><figcaption>遊戲</figcaption></figure>
+      <figure><img src="./assets/travel.webp" alt="旅遊"><figcaption>旅遊</figcaption></figure>
+      <figure><img src="./assets/food.webp" alt="美食"><figcaption>美食</figcaption></figure>
+      <figure><img src="./assets/school.webp" alt="校園"><figcaption>校園</figcaption></figure>
+    </div>
+    <p class="instruction">點有底線的詞可看解釋。藍色外框像遊戲對話框，跟著任務走就好。</p>
+    <div class="reveal-controls">
+      <button class="quiet" onclick="reveal('h0',this)">想一想</button>
+      <button onclick="reveal('a0',this);gain(8)">接下任務</button>
+    </div>
+    <div id="h0" class="reveal"><p>你會說「好看」，但還說不出「哪裡好看」。今天要把感覺變成可操作的判斷。</p></div>
+    <div id="a0" class="reveal answer"><h3>任務目標</h3><ul><li>拆出一支片的<span class="term-link" data-word="骨架">骨架</span></li><li>找出<span class="term-link" data-word="Hook">Hook</span>、<span class="term-link" data-word="節奏">節奏</span>、<span class="term-link" data-word="視線焦點">視線焦點</span></li><li>產出拆片筆記，下一堂直接進剪映</li></ul></div>
+  </div>
+</section>
 
-<section class="screen" id="s2" hidden><div class="eyebrow">03 / 骨架拆解 <span>22-35 分</span></div><h1>5 段骨架，不是背名詞</h1><div class="question">用「位置」去找，不是硬記定義。</div><div class="anatomy"><div><b>主題</b>開頭 1-3 秒</div><div><b>事件</b>開始發生</div><div><b>衝突</b>卡住、失誤、風險</div><div><b>轉折</b>策略改變、反擊</div><div><b>結果</b>成功或失敗都要交代</div></div><div class="visual-row"><figure><img src="./assets/rivals-discover.webp" alt="發現對手"><figcaption>事件感</figcaption></figure><figure><img src="./assets/rivals-focus.webp" alt="聚焦瞬間"><figcaption>衝突與轉折</figcaption></figure><figure><img src="./assets/sports.webp" alt="運動題材"><figcaption>生活也一樣</figcaption></figure><figure><img src="./assets/unboxing.webp" alt="開箱題材"><figcaption>開箱也有結果</figcaption></figure></div><div class="reveal-controls"><button class="quiet" onclick="reveal('h2',this)">想一想</button><button onclick="reveal('a2',this)">看答案</button></div><div id="h2" class="reveal"><p>這五段不一定平均長度，但位置通常很像。</p></div><div id="a2" class="reveal answer"><h3>你要學的是「抓位置」</h3><p>之後換成旅遊、美食、開箱，一樣抓得到骨架。</p></div></section>
+<section class="screen" id="s1" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 02 <span>對決小遊戲</span></div>
+    <h1>Hook 對決</h1>
+    <div class="question">哪一句開頭更讓人想看下去？點選你的選擇。</div>
+    <div class="game-board" id="hookGame">
+      <p class="instruction">共 3 題。選對會升經驗值。</p>
+      <div id="hookQ" class="question" style="font-size:22px"></div>
+      <div class="chips" id="hookChoices"></div>
+      <p class="feedback" id="hookFb"></p>
+    </div>
+    <div class="reveal-controls">
+      <button class="quiet" onclick="reveal('h1',this)">提示</button>
+      <button onclick="reveal('a1',this)">看重點</button>
+    </div>
+    <div id="h1" class="reveal"><p>好的開頭通常先給「任務」或「限制」，不是先打招呼。</p></div>
+    <div id="a1" class="reveal answer"><p><span class="term-link" data-word="Hook">Hook</span> 不是嗆人，是給觀眾留下的理由。選清楚的那句，後面也要真的交代結果。</p></div>
+  </div>
+</section>
 
-<section class="screen" id="s3" hidden><div class="eyebrow">04 / 注意力管理 <span>35-50 分</span></div><h1>高手在偷做「眼睛導演」</h1><div class="question">你覺得你在看整個畫面，其實你只在看他要你看的地方。</div><div class="compare"><div class="box good"><h3>做對了</h3><p>字幕短、位置準、重點字亮。畫面主角清楚。</p></div><div class="box bad"><h3>做錯了</h3><p>字幕遮住主角、字太多、鏡頭一直晃。</p></div></div><div class="reveal-controls"><button class="quiet" onclick="reveal('h3',this)">想一想</button><button onclick="reveal('a3',this)">看答案</button></div><div id="h3" class="reveal"><p>你想一下：有些影片你會「知道該看哪裡」，那就是他在導眼睛。</p></div><div id="a3" class="reveal answer"><h3>這是第二堂新增能力</h3><p>第一堂是選素材；第二堂進一步是「控制觀眾的視線與理解順序」。</p></div></section>
+<section class="screen" id="s2" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 03 <span>骨架小遊戲</span></div>
+    <h1>把故事骨架排好</h1>
+    <div class="question">點下方碎片，依序填進 5 格。像組任務地圖。</div>
+    <div class="game-board">
+      <div class="slots" id="slots"></div>
+      <div class="chips" id="bones"></div>
+      <div class="reveal-controls">
+        <button onclick="checkBones()">檢查組合</button>
+        <button class="quiet" onclick="resetBones()">重排</button>
+      </div>
+      <p class="feedback" id="boneFb"></p>
+    </div>
+    <div class="visual-row">
+      <figure><img src="./assets/rivals-discover.webp" alt="事件"><figcaption>事件感</figcaption></figure>
+      <figure><img src="./assets/rivals-focus.webp" alt="轉折"><figcaption>轉折感</figcaption></figure>
+      <figure><img src="./assets/sports.webp" alt="運動"><figcaption>生活也一樣</figcaption></figure>
+      <figure><img src="./assets/unboxing.webp" alt="開箱"><figcaption>開箱也有結果</figcaption></figure>
+    </div>
+    <div class="reveal-controls"><button onclick="reveal('a2',this)">看答案</button></div>
+    <div id="a2" class="reveal answer"><p>正確順序：<span class="term-link" data-word="主題">主題</span> → <span class="term-link" data-word="事件">事件</span> → <span class="term-link" data-word="衝突">衝突</span> → <span class="term-link" data-word="高潮">高潮</span> → <span class="term-link" data-word="結果">結果</span>。長度可不均，位置通常很像。</p></div>
+  </div>
+</section>
 
-<section class="screen" id="s4" hidden><div class="eyebrow">05 / 節奏診斷 <span>50-64 分</span></div><h1>快不是重點，對比才是重點</h1><div class="question">為什麼有些片「看起來很快」但不累？</div><p class="instruction">因為它有呼吸：快段推進、慢段說明、停點強調。</p><div class="reveal-controls"><button class="quiet" onclick="reveal('h4',this)">想一想</button><button onclick="reveal('a4',this)">看答案</button><button class="quiet" onclick="DirectorToolbox.open()">用節奏工具試</button></div><div id="h4" class="reveal"><p>一直快，等於沒有快。你會疲勞然後滑走。</p></div><div id="a4" class="reveal answer"><h3>診斷方式</h3><ul><li>快：把不重要過程往前推</li><li>慢：讓觀眾看懂一個關鍵</li><li>停：放大情緒或結果</li></ul></div></section>
+<section class="screen" id="s3" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 04 <span>視線小遊戲</span></div>
+    <h1>眼睛導演：點出該看哪裡</h1>
+    <div class="question">高手會偷導你的眼睛。點圖上「最該看」的位置。</div>
+    <div class="game-board">
+      <div class="eye-stage" id="eyeStage"><img src="./assets/rivals-focus.webp" alt="對戰畫面"></div>
+      <p class="instruction">目標：對準對手／關鍵動作附近。點錯可再點。</p>
+      <p class="feedback" id="eyeFb"></p>
+    </div>
+    <div class="reveal-controls">
+      <button class="quiet" onclick="reveal('h3',this)">想一想</button>
+      <button onclick="reveal('a3',this)">看重點</button>
+    </div>
+    <div id="h3" class="reveal"><p>字幕、放大、對比色，都是在告訴觀眾「看這裡」。</p></div>
+    <div id="a3" class="reveal answer"><p>這叫<span class="term-link" data-word="視線焦點">視線焦點</span>。第二堂新能力：不只選素材，還要控制觀眾先看什麼、後看什麼。</p></div>
+  </div>
+</section>
 
-<section class="screen" id="s5" hidden><div class="eyebrow">06 / 跨題材遷移 <span>64-75 分</span></div><h1>同一套思路，換題材一樣能用</h1><div class="question">Roblox、旅遊、運動、美食、校園，其實剪的是同一件事。</div><div class="visual-row"><figure><img src="./assets/rivals-view.webp" alt="遊戲"><figcaption>任務感</figcaption></figure><figure><img src="./assets/travel.webp" alt="旅遊"><figcaption>探索感</figcaption></figure><figure><img src="./assets/sports.webp" alt="運動"><figcaption>緊張感</figcaption></figure><figure><img src="./assets/food.webp" alt="美食"><figcaption>變化感</figcaption></figure></div><div class="reveal-controls"><button class="quiet" onclick="reveal('h5',this)">想一想</button><button onclick="reveal('a5',this)">看答案</button></div><div id="h5" class="reveal"><p>差的是內容，不是敘事方法。</p></div><div id="a5" class="reveal answer"><h3>你的能力不是遊戲限定</h3><p>你學到的是「讓別人看懂」：這比學一個軟體按鈕更有價值。</p></div></section>
+<section class="screen" id="s4" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 05 <span>節奏小遊戲</span></div>
+    <h1>節奏戰鬥：快／慢／停</h1>
+    <div class="question">一直快會累。點出合理的節奏組合。</div>
+    <div class="game-board">
+      <p class="instruction">情境：跑圖 → 發現對手 → 反殺瞬間 → 勝利反應</p>
+      <div class="chips">
+        <button class="chip" onclick="addPace('快')">＋快</button>
+        <button class="chip" onclick="addPace('慢')">＋慢</button>
+        <button class="chip" onclick="addPace('停')">＋停</button>
+        <button class="quiet" onclick="clearPace()">清空</button>
+        <button onclick="checkPace()">檢查節奏</button>
+      </div>
+      <div class="pace-lane" id="paceLane"></div>
+      <p class="feedback" id="paceFb"></p>
+    </div>
+    <div class="reveal-controls"><button onclick="reveal('a4',this)">看重點</button></div>
+    <div id="a4" class="reveal answer"><p><span class="term-link" data-word="節奏">節奏</span>靠對比：快推進、慢說明、停強調。建議：快→慢→停→慢。</p></div>
+  </div>
+</section>
 
-<section class="screen" id="s6" hidden><div class="eyebrow">07 / AI 與工具 <span>75-85 分</span></div><h1>先拆，再叫工具幫忙</h1><div class="question">工具箱不是幫你代做，是幫你加速判斷。</div><div class="reveal-controls"><button onclick="DirectorToolbox.open()">開啟工具箱</button><button class="quiet" onclick="reveal('h6',this)">想一想</button><button onclick="reveal('a6',this)">看答案</button></div><div id="h6" class="reveal"><p>先看懂問題，再用工具，才不會只會按按鈕。</p></div><div id="a6" class="reveal answer"><h3>這堂和第一堂最大差異</h3><ul><li>第一堂：建立創作觀念</li><li>第二堂：拿真作品做診斷 + 產出拆片筆記</li><li>第三堂：帶著筆記進剪映做成影片</li></ul></div></section>
+<section class="screen" id="s5" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 06 <span>換地圖</span></div>
+    <h1>同一套技能，換題材也能打</h1>
+    <div class="question">Roblox、旅遊、運動、美食，剪的是同一種「讓人看懂」。</div>
+    <div class="visual-row">
+      <figure><img src="./assets/rivals-view.webp" alt="遊戲"><figcaption>任務感</figcaption></figure>
+      <figure><img src="./assets/travel.webp" alt="旅遊"><figcaption>探索感</figcaption></figure>
+      <figure><img src="./assets/sports.webp" alt="運動"><figcaption>緊張感</figcaption></figure>
+      <figure><img src="./assets/food.webp" alt="美食"><figcaption>變化感</figcaption></figure>
+    </div>
+    <div class="reveal-controls">
+      <button class="quiet" onclick="reveal('h5',this)">想一想</button>
+      <button onclick="reveal('a5',this);gain(10)">收下技能</button>
+    </div>
+    <div id="h5" class="reveal"><p>差的是內容，不是方法。你學的是可帶走的能力。</p></div>
+    <div id="a5" class="reveal answer"><p>把<span class="term-link" data-word="骨架">骨架</span>抓到，題材換成校園、開箱也一樣能拆。</p></div>
+  </div>
+</section>
 
-<section class="screen quiz" id="s7" hidden><div class="eyebrow">08 / 課末檢核 <span>85-90 分</span></div><h1>檢核</h1><div class="question">第二堂最核心的能力是？</div><div class="quiz-options"><button onclick="answer(0,this)">會背名詞</button><button onclick="answer(1,this)">會拆高手的剪輯判斷</button><button onclick="answer(2,this)">會大量加特效</button></div><p id="fb" class="instruction"></p><div class="reveal-controls"><button class="quiet" onclick="reveal('hw',this)">回家練習</button></div><div id="hw" class="reveal"><p>找一支你喜歡的 Shorts，用工具箱的「拆片檢核」輸出一份筆記。下一堂直接拿那份筆記進剪映。</p></div></section>
+<section class="screen" id="s6" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 07 <span>道具箱</span></div>
+    <h1>先拆，再叫工具幫忙</h1>
+    <div class="question">工具箱是加速器，不是代打。你先判斷，它再幫忙。</div>
+    <div class="reveal-controls">
+      <button onclick="DirectorToolbox.open();gain(5)">打開工具箱</button>
+      <button class="quiet" onclick="reveal('a6',this)">看差異</button>
+    </div>
+    <div id="a6" class="reveal answer"><ul><li>第一堂：建立觀念</li><li>第二堂：診斷高手作品 + 產出筆記</li><li>第三堂：帶筆記進剪映實作</li></ul><p>也可用<span class="term-link" data-word="AI助手">AI助手</span>，但最後判斷是你的。</p></div>
+  </div>
+</section>
+
+<section class="screen" id="s7" hidden>
+  <div class="dq-win">
+    <div class="eyebrow">QUEST 08 <span>通關檢核</span></div>
+    <h1>這堂最核心的能力是？</h1>
+    <div class="chips">
+      <button class="chip" onclick="finalAns(0,this)">會背名詞</button>
+      <button class="chip" onclick="finalAns(1,this)">會拆高手的剪輯判斷</button>
+      <button class="chip" onclick="finalAns(2,this)">會堆很多特效</button>
+    </div>
+    <p class="feedback" id="finalFb"></p>
+    <div class="reveal-controls"><button class="quiet" onclick="reveal('hw',this)">回家任務</button></div>
+    <div id="hw" class="reveal"><p>找一支喜歡的 Shorts，用工具箱「拆片檢核」產出筆記。下一堂直接拿去剪映。</p></div>
+  </div>
+</section>
+
 </main>
-<footer><div class="progress" id="progress"></div><button class="quiet" id="prev" onclick="go(current-1)">← 上一頁</button><div><span id="pageCount"></span><span class="keys">← → 換頁 · F 全螢幕</span></div><button id="next" onclick="go(current+1)">下一頁 →</button></footer>
-<dialog id="chapters"><h2>第二堂導覽</h2><div class="chapter-list"><button class="quiet" onclick="go(0);closeCh()">01 今天不重複第一堂<small>00-10 分</small></button><button class="quiet" onclick="go(1);closeCh()">02 看片不是看熱鬧<small>10-22 分</small></button><button class="quiet" onclick="go(2);closeCh()">03 骨架拆解<small>22-35 分</small></button><button class="quiet" onclick="go(3);closeCh()">04 注意力管理<small>35-50 分</small></button><button class="quiet" onclick="go(4);closeCh()">05 節奏診斷<small>50-64 分</small></button><button class="quiet" onclick="go(5);closeCh()">06 跨題材遷移<small>64-75 分</small></button><button class="quiet" onclick="go(6);closeCh()">07 AI 與工具<small>75-85 分</small></button><button class="quiet" onclick="go(7);closeCh()">08 課末檢核<small>85-90 分</small></button></div><button onclick="closeCh()">回到授課</button></dialog>
+<footer>
+  <div class="progress" id="progress"></div>
+  <button class="quiet" id="prev" onclick="go(current-1)">← 上一頁</button>
+  <div><span id="pageCount"></span><span class="keys">　← → 換頁</span></div>
+  <button id="next" onclick="go(current+1)">下一頁 →</button>
+</footer>
+<dialog id="chapters">
+  <h2>任務地圖</h2>
+  <div class="chapter-list">
+    <button class="quiet" onclick="go(0);closeCh()">01 開場</button>
+    <button class="quiet" onclick="go(1);closeCh()">02 Hook 對決</button>
+    <button class="quiet" onclick="go(2);closeCh()">03 骨架組合</button>
+    <button class="quiet" onclick="go(3);closeCh()">04 視線焦點</button>
+    <button class="quiet" onclick="go(4);closeCh()">05 節奏戰鬥</button>
+    <button class="quiet" onclick="go(5);closeCh()">06 換地圖</button>
+    <button class="quiet" onclick="go(6);closeCh()">07 道具箱</button>
+    <button class="quiet" onclick="go(7);closeCh()">08 通關</button>
+  </div>
+  <button onclick="closeCh()">回到任務</button>
+</dialog>
+<dialog id="wordPopup">
+  <button class="quiet" onclick="wordPopup.close()">關閉 ×</button>
+  <small>用孩子的話說</small>
+  <h2 id="wordTitle"></h2>
+  <p id="wordMean"></p>
+  <div><small>生活中就是…</small><p id="wordEx"></p></div>
+</dialog>
 <script>
-var current=0,total=8;
-function go(n){if(n<0||n>=total)return;document.getElementById('s'+current).hidden=true;current=n;document.getElementById('s'+n).hidden=false;document.getElementById('prev').disabled=n===0;document.getElementById('next').disabled=n===total-1;document.getElementById('pageCount').textContent=(n+1)+' / '+total;document.getElementById('progress').style.width=((n+1)/total*100)+'%';window.scrollTo({top:0,behavior:'instant'})}
-function reveal(id,btn){var e=document.getElementById(id);e.classList.toggle('open');if(btn)btn.setAttribute('aria-expanded',e.classList.contains('open'))}
-function closeCh(){document.getElementById('chapters').close()}
-function answer(i,b){var ok=i===1;document.getElementById('fb').textContent=ok?'答對：第二堂重點是能拆出別人的剪輯判斷。':'再想想：不是背名詞或堆特效。';b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('chosen')});b.classList.add('chosen')}
-async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){}}
-document.addEventListener('keydown',function(e){if(['INPUT','TEXTAREA','SELECT','BUTTON'].includes(document.activeElement.tagName)||document.getElementById('chapters').open)return;if(e.key==='ArrowRight'){e.preventDefault();go(current+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1)}if(e.key.toLowerCase()==='f')fullscreen()});
-document.addEventListener('fullscreenchange',function(){document.getElementById('fsBtn').textContent=document.fullscreenElement?'退出全螢幕':'全螢幕'});
-go(0);window.addEventListener('load',function(){if(window.DirectorToolbox)DirectorToolbox.mount()});
-</script></body></html>
+const words={
+  'Hook':['開頭給觀眾留下的理由，常是任務或限制。','例如：「這場只能用手槍！」'],
+  '骨架':['故事的基本構造，幫觀眾看懂發生什麼。','像蓋房子先有樑柱，再裝潢。'],
+  '主題':['這支片要講的那一件事。','例如：只用手槍挑戰。'],
+  '事件':['故事裡開始發生的事。','例如：發現對手。'],
+  '衝突':['卡住、失誤、危機，讓人緊張的地方。','例如：快輸了。'],
+  '高潮':['轉折最大的瞬間。','例如：反殺成功。'],
+  '結果':['最後怎樣，成功或失敗都要交代。','例如：贏了／學到一招。'],
+  '節奏':['快、慢、停的安排，讓觀眾有呼吸。','不是一直快切。'],
+  '視線焦點':['現在要觀眾看哪裡。','字幕、放大、對比都在導眼睛。'],
+  'AI助手':['AI 給建議，你決定要不要用。','它不在現場，可能講錯。']
+};
+let current=0,total=8,exp=0;
+const boneOrder=['主題','事件','衝突','高潮','結果'];
+let bonePick=[], paceMarks=[], hookIdx=0, hookScore=0;
+const hookBank=[
+  {q:'RIVALS 開頭，哪句比較強？',a:'這場只能用手槍，失敗就結束！',b:'哈囉大家好，今天我們來玩遊戲……',ok:0},
+  {q:'美食片開頭，哪句比較強？',a:'大家好今天來做蛋糕。',b:'不用烤箱，真的做得出來嗎？',ok:1},
+  {q:'運動片開頭，哪句比較強？',a:'最後一球，我能不能進？',b:'我是某某某，喜歡運動。',ok:0}
+];
 
+function gain(n){exp+=n;document.getElementById('xpText').textContent='EXP '+exp;document.getElementById('xpBar').style.width=Math.min(100,exp)+'%';toast('經驗 +'+n);burst()}
+function toast(t){document.querySelector('.unlock-toast')?.remove();const e=document.createElement('div');e.className='unlock-toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1600)}
+function burst(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<10;i++){const b=document.createElement('i');b.className='burst';b.style.left=(innerWidth-80)+'px';b.style.top='100px';b.style.setProperty('--dx',(Math.cos(i)*80)+'px');b.style.setProperty('--dy',(Math.sin(i)*60)+'px');document.body.appendChild(b);setTimeout(()=>b.remove(),850)}}
+function go(n){if(n<0||n>=total)return;document.getElementById('s'+current).hidden=true;current=n;document.getElementById('s'+n).hidden=false;document.getElementById('prev').disabled=n===0;document.getElementById('next').disabled=n===total-1;document.getElementById('pageCount').textContent=(n+1)+' / '+total;document.getElementById('progress').style.width=((n+1)/total*100)+'%';if(n===1)renderHook();if(n===2)resetBones();window.scrollTo({top:0,behavior:'instant'})}
+function reveal(id,btn){const e=document.getElementById(id);e.classList.toggle('open');if(btn)btn.setAttribute('aria-expanded',e.classList.contains('open'))}
+function closeCh(){document.getElementById('chapters').close()}
+function annotate(root){const keys=Object.keys(words).sort((a,b)=>b.length-a.length);const re=new RegExp('('+keys.join('|')+')','g');root.querySelectorAll('.term-link').forEach(b=>{if(!b.dataset.word)b.dataset.word=b.textContent})}
+document.addEventListener('click',e=>{const b=e.target.closest('.term-link');if(!b)return;const w=b.dataset.word||b.textContent;if(!words[w])return;wordTitle.textContent=w;wordMean.textContent=words[w][0];wordEx.textContent=words[w][1];wordPopup.showModal()});
+
+function renderHook(){const item=hookBank[hookIdx];if(!item){hookQ.textContent='對決完成！答對 '+hookScore+' / '+hookBank.length;hookChoices.innerHTML='';return}hookQ.textContent=(hookIdx+1)+'. '+item.q;hookChoices.innerHTML='';[item.a,item.b].forEach((t,i)=>{const btn=document.createElement('button');btn.className='chip';btn.textContent=t;btn.onclick=()=>{const ok=i===item.ok;hookFb.textContent=ok?'命中！這句更清楚。':'再想：哪句先給任務／限制？';hookFb.className='feedback'+(ok?'':' bad');if(ok){hookScore++;gain(6);burst()}hookIdx++;setTimeout(renderHook,700)};hookChoices.appendChild(btn)})}
+
+function resetBones(){bonePick=[];slots.innerHTML='';bones.innerHTML='';boneFb.textContent='';boneOrder.forEach((name,i)=>{const s=document.createElement('div');s.className='slot';s.id='slot'+i;s.innerHTML='<small>'+(i+1)+'</small><div>—</div>';slots.appendChild(s)});const shuffled=boneOrder.slice().sort(()=>Math.random()-0.5);shuffled.forEach(name=>{const b=document.createElement('button');b.className='chip';b.textContent=name;b.onclick=()=>{if(bonePick.includes(name))return;if(bonePick.length>=5)return;bonePick.push(name);b.disabled=true;const s=document.getElementById('slot'+(bonePick.length-1));s.classList.add('filled');s.querySelector('div').textContent=name};bones.appendChild(b)})}
+function checkBones(){const ok=bonePick.join()===boneOrder.join();boneFb.textContent=ok?'組合成功！骨架齊了。':'順序不對，再排一次。';boneFb.className='feedback'+(ok?'':' bad');if(ok){gain(12);burst()}}
+
+eyeStage.onclick=function(e){const r=eyeStage.getBoundingClientRect();const x=((e.clientX-r.left)/r.width)*100;const y=((e.clientY-r.top)/r.height)*100;eyeStage.querySelector('.mark')?.remove();const m=document.createElement('div');m.className='mark';m.style.left=x+'%';m.style.top=y+'%';eyeStage.appendChild(m);const ok=x>35&&x<80&&y>25&&y<75;eyeFb.textContent=ok?'打中焦點！觀眾眼睛會跟到這裡。':'有點偏了，再找關鍵動作附近。';eyeFb.className='feedback'+(ok?'':' bad');if(ok){gain(10);burst()}};
+
+function addPace(k){paceMarks.push(k);paintPace()}
+function clearPace(){paceMarks=[];paintPace();paceFb.textContent=''}
+function paintPace(){paceLane.innerHTML='';paceMarks.forEach((k,i)=>{const s=document.createElement('span');s.className=k==='快'?'p-fast':(k==='慢'?'p-mid':'p-stop');s.textContent=k;s.onclick=()=>{paceMarks.splice(i,1);paintPace()};paceLane.appendChild(s)})}
+function checkPace(){const ok=paceMarks.join()==='快,慢,停,慢'||paceMarks.join()==='快,慢,停';paceFb.textContent=ok?'節奏通關！有呼吸感。':'試看看：快→慢→停（或再加一個慢）。';paceFb.className='feedback'+(ok?'':' bad');if(ok){gain(12);burst()}}
+
+function finalAns(i,b){const ok=i===1;finalFb.textContent=ok?'通關！第二堂核心是拆出高手的剪輯判斷。':'再想想：不是背名詞或堆特效。';finalFb.className='feedback'+(ok?'':' bad');document.querySelectorAll('#s7 .chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');if(ok){gain(15);burst()}}
+
+async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){}}
+document.addEventListener('fullscreenchange',()=>fsBtn.textContent=document.fullscreenElement?'退出全螢幕':'全螢幕');
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA','SELECT','BUTTON'].includes(document.activeElement.tagName)||chapters.open||wordPopup.open)return;if(e.key==='ArrowRight'){e.preventDefault();go(current+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1)}if(e.key.toLowerCase()==='f')fullscreen()});
+annotate(document);go(0);
+window.addEventListener('load',()=>{if(window.DirectorToolbox)DirectorToolbox.mount({fab:false})});
+</script>
+</body>
+</html>

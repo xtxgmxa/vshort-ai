@@ -35,7 +35,7 @@
     var s = el('style');
     s.id = 'toolbox-style';
     s.textContent =
-      '#tb-fab{position:fixed;right:18px;bottom:18px;z-index:9000;background:#72efb4;color:#101724;border:0;border-radius:24px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer}' +
+      '#tb-fab{position:fixed;left:16px;bottom:78px;z-index:40;background:#72efb4;color:#101724;border:2px solid #101724;border-radius:12px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 #0006}' +
       '#tb-fab:hover{filter:brightness(1.06)}' +
       '#tb{position:fixed;inset:0;z-index:9050;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px}' +
       '#tb[hidden]{display:none!important}' +
@@ -239,11 +239,13 @@
     body.appendChild(input); body.appendChild(t); body.appendChild(s); body.appendChild(cp); body.appendChild(out);
   }
 
-  function mount() {
+  function mount(opts) {
+    opts = opts || {};
     if (state.mounted) return;
     ensureStyle();
     var fab = el('button', '', '🧰 工具箱');
     fab.id = 'tb-fab';
+    if (opts.fab === false) fab.hidden = true;
     var overlay = el('div');
     overlay.id = 'tb';
     overlay.hidden = true;
