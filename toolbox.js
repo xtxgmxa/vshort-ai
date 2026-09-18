@@ -3,6 +3,21 @@
 
   var TABS = ['Hook 產生器', '三格腳本', '字幕建議', '節奏標記', 'AI 指令', '拆片檢核', '簡繁轉換'];
   var state = { mounted: false, current: TABS[0], marks: [] };
+  var converterReady;
+  var converterScript = document.currentScript;
+  var converterURL = new URL('./assets/vendor/opencc-full.js', converterScript ? converterScript.src : document.baseURI).href;
+  function loadConverter() {
+    if (global.OpenCC) return Promise.resolve(global.OpenCC);
+    if (converterReady) return converterReady;
+    converterReady = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = converterURL;
+      script.onload = function () { if (global.OpenCC) resolve(global.OpenCC); else { converterReady = null; reject(new Error('字典沒有載入')); } };
+      script.onerror = function () { script.remove(); converterReady = null; reject(new Error('無法載入字典')); };
+      document.head.appendChild(script);
+    });
+    return converterReady;
+  }
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -223,20 +238,37 @@
   }
 
   function renderConvert(body) {
-    body.appendChild(html('p', '', '簡繁互轉（常用字）。'));
-    var s2t = { '简': '簡', '体': '體', '国': '國', '说': '說', '学': '學', '这': '這', '里': '裡', '点': '點', '图': '圖', '录': '錄', '视': '視', '频': '頻', '软': '軟', '导': '導' };
-    var t2s = {};
-    Object.keys(s2t).forEach(function (k) { t2s[s2t[k]] = k; });
-    function convert(text, map) { return (text || '').replace(/./g, function (c) { return map[c] || c; }); }
+    body.appendChild(el('p', '', '貼上字幕或文章，轉成繁體（台灣字形）或簡體。使用本機字詞字典，不會上傳文字。'));
     var input = el('textarea');
+    input.setAttribute('aria-label', '要轉換的文字');
+    input.placeholder = '例如：头发、发展、后台、皇后。可貼上多行字幕。';
     var out = el('textarea'); out.readOnly = true;
+    out.setAttribute('aria-label', '轉換結果');
+    var status = el('p'); status.setAttribute('role', 'status');
     var t = el('button', '', '轉繁體');
     var s = el('button', 'ghost', '轉簡體');
     var cp = el('button', 'ghost', '複製');
-    t.onclick = function () { out.value = convert(input.value, s2t); };
-    s.onclick = function () { out.value = convert(input.value, t2s); };
-    cp.onclick = function () { copyText(out.value); };
-    body.appendChild(input); body.appendChild(t); body.appendChild(s); body.appendChild(cp); body.appendChild(out);
+    var converters = {};
+    function run(direction) {
+      if (!input.value.trim()) { out.value = ''; status.textContent = '先貼上想轉換的文字。'; return; }
+      var source = input.value;
+      t.disabled = s.disabled = true;
+      status.textContent = '正在載入字典…';
+      loadConverter().then(function (OpenCC) {
+        if (!converters[direction]) converters[direction] = OpenCC.Converter(direction === 'traditional' ? {from:'cn',to:'tw'} : {from:'tw',to:'cn'});
+        out.value = converters[direction](source);
+        status.textContent = '轉換完成。多義詞仍請依上下文讀一次。';
+      }).catch(function () { status.textContent = '字典載入失敗，請確認 assets/vendor/opencc-full.js 隨網站一起上傳，再試一次。'; })
+        .finally(function () { t.disabled = s.disabled = false; });
+    }
+    t.onclick = function () { run('traditional'); };
+    s.onclick = function () { run('simplified'); };
+    cp.onclick = function () {
+      if (!out.value) { status.textContent = '先轉換文字，再複製結果。'; return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(out.value).then(function () { status.textContent = '已複製。'; }).catch(function () { out.focus(); out.select(); status.textContent = '請按 Ctrl+C 複製已選取的結果。'; });
+      else { out.focus(); out.select(); status.textContent = '請按 Ctrl+C 複製已選取的結果。'; }
+    };
+    body.appendChild(input); body.appendChild(t); body.appendChild(s); body.appendChild(cp); body.appendChild(out); body.appendChild(status);
   }
 
   function mount(opts) {
