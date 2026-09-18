@@ -1,1 +1,58 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>小導演任務｜短影音剪輯 × AI 互動課</title><link rel="stylesheet" href="./catalog.css"></head><body><header><strong>小導演任務</strong><span>作者 Mr.Bill</span></header><main><small>課程目錄 / CREATOR LAB</small><h1>短影音剪輯 × AI 互動課</h1><p class="intro">你是導演，AI 是助手。先學會看懂與選擇，再把遊戲、運動、美食與生活變成自己的故事。</p><h2>選一堂，開始你的任務</h2><div class="cards" id="courses"></div><p class="note">每堂都有完整答案、老師講解與互動練習。點進任何課程前需輸入密碼；登入後約一小時內可直接進入其他課程。第一堂可直接使用；後續課程會持續新增。</p><noscript><p>請啟用 JavaScript 後再進入課程。</p></noscript></main><footer>課程作者 Mr.Bill</footer><script src="./courses.js"></script><script src="./auth.js"></script><script>const host=document.getElementById('courses');COURSES.forEach(c=>{const a=document.createElement('a');a.href=c.href;a.className='card'+(c.ready?'':' planned');a.innerHTML='<span class="status"></span><div class="number"></div><h2></h2><p></p><small></small><span class="enter"></span>';a.querySelector('.status').textContent=c.status;a.querySelector('.number').textContent=c.number;a.querySelector('h2').textContent=c.title;a.querySelector('p').textContent=c.description;a.querySelector('small').textContent=c.duration;a.querySelector('.enter').textContent=c.ready?'進入課程 →':'查看下一堂 →';host.append(a)});const firstCourse=document.querySelector('.card');if(firstCourse){const photo=document.createElement('img');photo.src='./assets/rivals-view.webp';photo.alt='RIVALS 官方遊戲畫面';photo.className='course-photo';firstCourse.prepend(photo)}CourseGate.guardCatalog('#courses');</script></body></html>
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>小導演任務｜短影音剪輯 × AI 互動課</title>
+  <link rel="stylesheet" href="./catalog.css">
+</head>
+<body>
+  <header><strong>小導演任務</strong><span>作者 Mr.Bill</span></header>
+  <main>
+    <small>課程目錄 / CREATOR LAB</small>
+    <h1>短影音剪輯 × AI 互動課</h1>
+    <p class="intro">先看懂，再動手。第一堂建立觀念，第二堂拆高手作品，第三堂才會進剪映實作。</p>
+    <div style="margin:14px 0 8px"><button id="openTools">🧰 先打開工具箱試試</button></div>
+    <h2>選一堂，開始你的任務</h2>
+    <div class="cards" id="courses"></div>
+    <p class="note">點進任何課程前需輸入密碼；登入後約一小時內可直接進入其他課程。</p>
+    <noscript><p>請啟用 JavaScript 後再進入課程。</p></noscript>
+  </main>
+  <footer>課程作者 Mr.Bill</footer>
+  <script src="./courses.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./toolbox.js"></script>
+  <script>
+    const host = document.getElementById('courses');
+    const photos = {
+      '01': './assets/rivals-view.webp',
+      '02': './assets/rivals-focus.webp'
+    };
+    COURSES.forEach(c => {
+      const a = document.createElement('a');
+      a.href = c.href;
+      a.className = 'card' + (c.ready ? '' : ' planned');
+      a.innerHTML = '<span class="status"></span><div class="number"></div><h2></h2><p></p><small></small><span class="enter"></span>';
+      a.querySelector('.status').textContent = c.status;
+      a.querySelector('.number').textContent = c.number;
+      a.querySelector('h2').textContent = c.title;
+      a.querySelector('p').textContent = c.description;
+      a.querySelector('small').textContent = c.duration;
+      a.querySelector('.enter').textContent = c.ready ? '進入課程 →' : '查看下一堂 →';
+      if (photos[c.number]) {
+        const photo = document.createElement('img');
+        photo.src = photos[c.number];
+        photo.alt = c.title + '示意圖';
+        photo.className = 'course-photo';
+        a.prepend(photo);
+      }
+      host.append(a);
+    });
+    CourseGate.guardCatalog('#courses');
+    if (window.DirectorToolbox) {
+      DirectorToolbox.mount();
+      document.getElementById('openTools').onclick = () => DirectorToolbox.open();
+    }
+  </script>
+</body>
+</html>
