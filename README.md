@@ -10,11 +10,20 @@
 
 ## 後續新增課程
 
-1. 將完成的第二堂教材替換 lesson2.html。
-2. 編輯 courses.js 的第二堂項目：更新 title、description、duration、status，將 ready 改為 true。
-3. 新增第三堂時，建立 lesson3.html，再複製一個 courses.js 項目，設定 number 與 href。全部使用相對路徑，所以儲存庫名稱改變也能使用。
+1. 第二堂已完成：lesson2.html（拆解高手作品）。
+2. 新增第三堂時，建立 lesson3.html，再複製一個 courses.js 項目，設定 number 與 href。全部使用相對路徑，所以儲存庫名稱改變也能使用。
+3. 課程頁都要在 `</head>` 前保留 `auth.js` 與 `CourseGate.guardLesson()`，以及 `toolbox.js`（要用工具箱才需要）。
 
-第一堂：lesson1.html；第二堂占位：lesson2.html；首頁：index.html。
+第一堂：lesson1.html；第二堂：lesson2.html；首頁：index.html。
+
+## 導演工具箱
+
+toolbox.js 是純前端小工具，在課程頁右下角有「🧰 工具箱」按鈕，點開可使用：Hook 產生器、三格腳本、字幕建議器、節奏標記器、AI 指令產生器、拆片檢核表、簡繁轉換。不連網、不送資料。
+
+## AI 指令與規範
+
+- `prompts/`：給孩子用的固定格式 AI 指令範本，只要改題材與觀眾兩個欄位。
+- `guide/`：剪輯 SOP、字幕規則、AI 使用原則的 .md 規範，同時是上課講義。
 
 ## 授課互動
 
