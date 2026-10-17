@@ -9,401 +9,255 @@
 <script src="./toolbox.js"></script>
 <script>CourseGate.guardLesson()</script>
 <style>
-:root{--bg:#101724;--panel:#1a2538;--ink:#f2f5fc;--muted:#aab7ca;--mint:#72efb4;--gold:#f0c75e;--line:#34435b;--bad:#ffb089}
+:root{--bg:#101724;--ink:#f4f7fb;--muted:#9eafc4;--mint:#72efb4;--line:#31445f;--cyan:#3ecbff;--bad:#ffb089}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.55}
-button,input,select{font:inherit}
-button{cursor:pointer;border:1px solid var(--mint);background:var(--mint);color:#102018;border-radius:8px;padding:10px 16px;font-weight:800}
-button:hover{filter:brightness(1.06)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
+button,input{font:inherit}
+button{cursor:pointer;border:1px solid var(--mint);background:var(--mint);color:#102018;border-radius:8px;padding:10px 14px;font-weight:800}
 .quiet{background:transparent;color:var(--ink);border-color:var(--line);font-weight:600}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 3vw;border-bottom:1px solid var(--line);background:#101724;position:sticky;top:0;z-index:8}
+header{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 3vw;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101724;z-index:5}
+header a,header button{color:var(--mint);text-decoration:none}
 header nav{display:flex;gap:8px;flex-wrap:wrap}
-header a{color:var(--mint);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-.hud{display:flex;gap:12px;align-items:center;padding:8px 3vw;background:#162033;color:var(--muted);font-size:14px}
-.hud b{color:var(--gold)}
-.xp{flex:1;height:8px;background:#0c121c;border-radius:8px;overflow:hidden}
-.xp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--mint));transition:width .3s}
-main{max-width:1080px;margin:auto;padding:22px 22px 120px}
-.screen[hidden]{display:none}
-.screen{animation:in .35s ease}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-.eyebrow{color:var(--mint);font-weight:800;font-size:14px}
-.eyebrow span{float:right;color:var(--muted);font-weight:600}
-h1{font-size:clamp(26px,3vw,40px);margin:8px 0 12px;line-height:1.25}
-.question{font-size:clamp(20px,2.2vw,28px);margin:0 0 14px}
-p{font-size:18px;margin:8px 0}
-.note{color:var(--muted);font-size:15px}
-.term{border:0;border-bottom:1px dashed var(--mint);background:transparent;color:inherit;padding:0 1px;border-radius:0;font:inherit;font-weight:inherit;cursor:help}
-.term:hover{color:var(--mint)}
-.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.reveal{display:none;margin-top:12px;padding:14px 16px;background:#121b2b;border-left:4px solid var(--mint);border-radius:0 10px 10px 0}
-.reveal.open{display:block}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.zone,.pick,.clip,.step{background:#121b2b;border:1px solid var(--line);border-radius:10px;padding:12px}
-.zone.hot,.pick.on,.clip.keep{border-color:var(--mint);background:#173228}
-.clip.cut{opacity:.35;text-decoration:line-through}
-.pick.bad{border-color:var(--bad)}
-.film{display:flex;gap:8px;overflow-x:auto;padding:8px 0}
-.clip{min-width:120px;text-align:left}
-.clip b{display:block;color:var(--mint)}
-.fake-ui{display:grid;grid-template-columns:180px 1fr;grid-template-rows:180px 120px;gap:8px;margin:12px 0}
-.fake-ui .preview{grid-column:2;grid-row:1;position:relative;overflow:hidden;background:#0c121c;border:1px solid var(--mint);border-radius:10px;display:flex;align-items:flex-end;padding:12px}
-.fake-ui .bin{grid-column:1;grid-row:1 / span 2}
-.fake-ui .time{grid-column:2;grid-row:2;display:flex;gap:6px;align-items:center}
-.cap{font-size:22px;font-weight:800}
-.cap.mid{align-self:center;width:100%;text-align:center;color:var(--mint)}
-.cap.low{align-self:flex-end}
-.cap.block{align-self:center;background:#000c;padding:8px}
-.vol{width:100%}
-.feedback{min-height:1.4em;color:var(--mint);font-size:17px}
+main{max-width:1180px;margin:auto;padding:16px 16px 28px}
+.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.75fr);gap:14px;align-items:start}
+.editor{background:#121820;border:1px solid #2a3544;border-radius:14px;overflow:hidden}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#0d1218;color:#d5deea;font-size:14px}
+.topbar b{color:var(--cyan)}
+.workspace{display:grid;grid-template-columns:168px 1fr;min-height:250px}
+.bin,.preview{border-right:1px solid #2a3544;border-bottom:1px solid #2a3544}
+.bin{padding:8px;background:#161d27}
+.bin h3,.time h3{margin:0 0 8px;font-size:13px;color:#8ea0b8}
+.thumb{display:flex;gap:8px;width:100%;text-align:left;background:#0e141c;color:var(--ink);border:1px solid #31445f;border-radius:8px;padding:4px;margin:0 0 6px;font-weight:600}
+.thumb img{width:54px;height:36px;object-fit:cover;border-radius:4px;background:#243140}
+.thumb small{display:block;color:var(--muted);font-weight:500}
+.preview{position:relative;min-height:250px;background:#070b10;display:flex;align-items:center;justify-content:center}
+.preview img{width:100%;height:250px;object-fit:cover;display:block}
+.preview .empty{color:#8ea0b8;padding:24px;text-align:center}
+.caption{position:absolute;left:8%;right:8%;text-align:center;font-weight:900;font-size:28px;color:#fff;text-shadow:0 2px 8px #000}
+.caption.low{bottom:16px}
+.caption.mid{top:42%}
+.caption.block{top:38%;background:#000c}
+.playhead-tag{position:absolute;top:8px;left:8px;background:#000c;color:var(--cyan);border-radius:6px;padding:4px 8px;font-size:12px}
+.timeline{padding:10px}
+.tracks{display:flex;flex-direction:column;gap:6px}
+.track{display:flex;gap:6px;min-height:54px;align-items:stretch;background:#0e141c;border:1px dashed #31445f;border-radius:8px;padding:6px}
+.track b{width:42px;flex:none;font-size:12px;color:#8ea0b8;align-self:center}
+.seg{flex:1;min-width:70px;border:0;border-radius:6px;padding:4px;color:#fff;font-weight:800;background:#24506a center/cover}
+.seg.wait{background:#3a2a24}
+.seg.on{outline:2px solid var(--cyan)}
+.audio{height:14px;border-radius:6px;background:repeating-linear-gradient(90deg,#3ecbff 0 6px,#163246 6px 10px);align-self:center}
+.sources{display:flex;gap:8px;overflow:auto;padding:8px;background:#0d1218}
+.sources .thumb{width:140px;flex:none;margin:0}
+.zone-hot{box-shadow:inset 0 0 0 2px var(--cyan)}
+.coach{background:#1a2538;border:1px solid var(--line);border-radius:14px;padding:16px}
+.stepno{color:var(--mint);font-weight:800;font-size:13px}
+.coach h1{font-size:26px;line-height:1.3;margin:6px 0 8px}
+.coach p{font-size:17px;line-height:1.55;margin:8px 0;color:#d5deea}
+.say{font-size:20px;color:#fff}
+.real{background:#121b2b;border-left:4px solid var(--cyan);padding:10px 12px;border-radius:0 8px 8px 0;color:#d5deea}
+.real b{color:var(--cyan)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.feedback{min-height:1.4em;color:var(--mint);font-weight:700}
 .feedback.bad{color:var(--bad)}
-ol.steps{padding-left:1.2em}
-ol.steps li{margin:8px 0;font-size:18px}
-footer{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 3vw;background:#101724ee;border-top:1px solid var(--line);z-index:9}
-.bar{position:absolute;top:0;left:0;height:3px;background:var(--mint);width:0}
-footer span{color:var(--muted)}
-dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;width:min(680px,92vw);padding:20px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.frame{background:#0e141c;border-radius:10px;overflow:hidden;border:1px solid #31445f}
+.frame img{width:100%;height:120px;object-fit:cover;display:block}
+.frame span{display:block;padding:8px;font-size:14px}
+.frame.good{border-color:var(--mint)}
+.term{border:0;border-bottom:1px dashed var(--mint);background:transparent;color:inherit;padding:0;border-radius:0;font:inherit;cursor:help}
+dialog{background:#1a2538;color:var(--ink);border:1px solid var(--line);border-radius:12px;width:min(480px,92vw);padding:18px}
 dialog::backdrop{background:#000a}
-.chapters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.chapters button{text-align:left;background:transparent;color:var(--ink);border-color:var(--line)}
-@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media(max-width:760px){.grid2,.grid3,.fake-ui,.chapters{grid-template-columns:1fr}.fake-ui{grid-template-rows:auto}.fake-ui .preview,.fake-ui .bin,.fake-ui .time{grid-column:1;grid-row:auto}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.vol{width:100%}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.bin{border-right:0}}
 </style>
 </head>
 <body>
 <header>
-  <strong>小導演任務 <small style="color:#72efb4">第三堂 · 剪映</small></strong>
+  <strong>小導演任務 <small style="color:#72efb4">第三堂 · 跟著畫面做一支片</small></strong>
   <nav>
     <a href="./index.html">← 課程目錄</a>
-    <button class="quiet" onclick="document.getElementById('map').showModal()">課程地圖</button>
     <button class="quiet" onclick="DirectorToolbox.open()">🧰 工具箱</button>
   </nav>
 </header>
-<div class="hud"><span>先懂按鈕在做什麼，再開軟體</span><div class="xp"><i id="xp"></i></div><b id="xpText">進度 0</b></div>
 <main>
-
-<section class="screen" id="s0">
-  <div class="card">
-    <div class="eyebrow">00–08 分 <span>銜接</span></div>
-    <h1>剪映是工具，不是新的一門課</h1>
-    <p class="question">前兩堂你已經會選、會排、會刪。今天只是把那些決定，按到剪映裡。</p>
-    <div class="grid3">
-      <div class="pick"><b>第一堂</b><p>看懂要留什麼。</p></div>
-      <div class="pick"><b>第二堂</b><p>在模擬介面練過時間軸。</p></div>
-      <div class="pick"><b>第三堂</b><p>打開 <span class="term" data-word="剪映">剪映</span>／CapCut 做出來。</p></div>
-    </div>
-    <div class="row">
-      <button class="quiet" onclick="reveal('h0')">先想一下</button>
-      <button onclick="reveal('a0');gain(8)">我知道今天要做什麼</button>
-    </div>
-    <div class="reveal" id="h0"><p>如果你只記按鈕、不記得為什麼按，換一台電腦或換一個版本就會卡住。</p></div>
-    <div class="reveal" id="a0"><p>今天的順序：先認三個區域，再練分割、排序、字幕、音樂，最後才打開剪映跟著做。</p></div>
+  <div class="layout">
+    <section class="editor" id="stage"></section>
+    <aside class="coach" id="coach"></aside>
   </div>
-</section>
-
-<section class="screen" id="s1" hidden>
-  <div class="card">
-    <div class="eyebrow">08–18 分 <span>介面</span></div>
-    <h1>剪映畫面上，主要就這三塊</h1>
-    <p class="question">點下面的名字，再點它該去的區域。</p>
-    <div class="fake-ui" id="uiMap">
-      <div class="zone bin" data-zone="素材庫"><b>素材庫</b><p class="note" id="z-bin">還沒放</p></div>
-      <div class="zone preview" data-zone="預覽窗"><b>預覽窗</b><p class="note" id="z-preview">還沒放</p></div>
-      <div class="zone time" data-zone="時間軸"><b>時間軸</b><p class="note" id="z-time">還沒放</p></div>
-    </div>
-    <div class="row" id="labels"></div>
-    <p class="feedback" id="mapFb"></p>
-    <div class="row"><button onclick="reveal('a1')">看對照</button></div>
-    <div class="reveal" id="a1">
-      <p><span class="term" data-word="素材庫">素材庫</span>放你導入的影片和照片。<span class="term" data-word="預覽窗">預覽窗</span>是觀眾會看到的畫面。<span class="term" data-word="時間軸">時間軸</span>是你排列、切開、刪掉的地方。中間那條會動的線叫<span class="term" data-word="播放頭">播放頭</span>。</p>
-    </div>
-  </div>
-</section>
-
-<section class="screen" id="s2" hidden>
-  <div class="card">
-    <div class="eyebrow">18–26 分 <span>導入</span></div>
-    <h1>先把要用的放進來</h1>
-    <p class="question">哪一些該進這支 30 秒的片子？</p>
-    <div class="grid2" id="importGame"></div>
-    <p class="feedback" id="importFb"></p>
-    <div class="row"><button onclick="checkImport()">檢查我的選擇</button><button class="quiet" onclick="reveal('a2')">為什麼</button></div>
-    <div class="reveal" id="a2"><p>導入不是全部都要用。進了<span class="term" data-word="素材庫">素材庫</span>，還是可以不拖上<span class="term" data-word="時間軸">時間軸</span>。跟主題無關的，留在庫裡就好。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s3" hidden>
-  <div class="card">
-    <div class="eyebrow">26–38 分 <span>分割</span></div>
-    <h1>切開，再刪掉沒有新事情的地方</h1>
-    <p class="question">點「等待」，把它剪掉。其他段先留著。</p>
-    <div class="film" id="cuts"></div>
-    <p class="feedback" id="cutFb"></p>
-    <div class="row"><button onclick="checkCut()">檢查</button><button class="quiet" onclick="resetCut()">重來</button><button class="quiet" onclick="reveal('a3')">對到剪映</button></div>
-    <div class="reveal" id="a3"><p>在剪映：把<span class="term" data-word="播放頭">播放頭</span>停在要切的地方，按剪刀<span class="term" data-word="分割">分割</span>，再點不要的那一段按刪除。這就是第二堂「留下有用的鏡頭」。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s4" hidden>
-  <div class="card">
-    <div class="eyebrow">38–46 分 <span>排序</span></div>
-    <h1>順序不對，觀眾會看不懂</h1>
-    <p class="question">依「開始 → 麻煩 → 結果」點選。</p>
-    <div class="row" id="orderBtns"></div>
-    <p id="orderLine" class="question" style="font-size:20px">目前：</p>
-    <p class="feedback" id="orderFb"></p>
-    <div class="row"><button class="quiet" onclick="resetOrder()">重排</button><button class="quiet" onclick="reveal('a4')">為什麼</button></div>
-    <div class="reveal" id="a4"><p>剪映裡直接用滑鼠拖片段。拖的時候問的是故事，不是「哪個特效比較炫」。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s5" hidden>
-  <div class="card">
-    <div class="eyebrow">46–54 分 <span>字幕</span></div>
-    <h1>字幕是幫人看懂，不是擋住畫面</h1>
-    <p class="question">這句「只能用手槍」放哪裡？</p>
-    <div class="fake-ui" style="grid-template-rows:200px">
-      <div class="zone preview" id="capStage" style="grid-column:1 / -1"><img src="./assets/rivals-focus.webp" alt="對戰畫面" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55"><span class="cap" id="capText">只能用手槍</span></div>
-    </div>
-    <div class="row">
-      <button class="quiet" onclick="placeCap('mid')">放中間大字</button>
-      <button class="quiet" onclick="placeCap('low')">放下方</button>
-      <button class="quiet" onclick="placeCap('block')">蓋住臉</button>
-    </div>
-    <p class="feedback" id="capFb"></p>
-    <div class="reveal" id="a5"><p>字少又重要，可以放中間。字多就放下方，而且不要擋人。用<span class="term" data-word="自動字幕">自動字幕</span>之後，一定要自己改錯字。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s6" hidden>
-  <div class="card">
-    <div class="eyebrow">54–60 分 <span>音樂</span></div>
-    <h1>音樂是幫手，不是主角</h1>
-    <p class="question">把音樂音量調到「聽得見氣氛，也聽得見人說話」。</p>
-    <label>音樂音量 <output id="volOut">70</output></label>
-    <input class="vol" id="vol" type="range" min="0" max="100" value="70">
-    <p class="feedback" id="volFb">現在太大聲，說話會被蓋住。</p>
-    <div class="row"><button onclick="checkVol()">這樣可以嗎</button><button class="quiet" onclick="reveal('a6')">為什麼</button></div>
-    <div class="reveal" id="a6"><p>人聲是一條<span class="term" data-word="軌道">軌道</span>，音樂是另一條。高潮可以大聲一點，要聽清楚的句子就先把音樂拉小。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s7" hidden>
-  <div class="card">
-    <div class="eyebrow">60–70 分 <span>進軟體</span></div>
-    <h1>打開剪映，照這個順序做</h1>
-    <p class="note">電腦用剪映專業版或 CapCut，手機用剪映／CapCut App。按鈕名稱會改版，先找「它在做什麼」。</p>
-    <ol class="steps" id="softSteps"></ol>
-    <p class="feedback" id="softFb"></p>
-    <div class="row">
-      <a href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut 官網 ↗</a>
-      <button onclick="finishSoft()">八步都勾完了</button>
-    </div>
-    <div class="reveal" id="a7"><p>做完先自己看一次：開頭有沒有理由、中間有沒有事、最後有沒有結果。再按<span class="term" data-word="匯出">匯出</span>。短影音常用直式 9:16。這支片可以只存在自己的電腦，不一定要上傳。</p></div>
-  </div>
-</section>
-
-<section class="screen" id="s8" hidden>
-  <div class="card">
-    <div class="eyebrow">收尾</div>
-    <h1>三題，確認你不是只會按</h1>
-    <p class="question" id="quizQ"></p>
-    <div class="row" id="quizOps"></div>
-    <p class="feedback" id="quizFb"></p>
-  </div>
-</section>
-
 </main>
-<footer>
-  <div class="bar" id="bar"></div>
-  <button class="quiet" id="prev">← 上一頁</button>
-  <span id="count"></span>
-  <button id="next">下一頁 →</button>
-</footer>
-<dialog id="map">
-  <h2>第三堂地圖</h2>
-  <div class="chapters" id="chapters"></div>
-  <button onclick="map.close()">回到課堂</button>
-</dialog>
 <dialog id="word">
   <button class="quiet" onclick="word.close()">關閉</button>
   <h2 id="wordTitle"></h2>
   <p id="wordMean"></p>
-  <p class="note" id="wordEx"></p>
+  <p id="wordEx"></p>
 </dialog>
 <script>
-const words={
-  '剪映':['剪影片的軟體。國際版常叫 CapCut，中文介面常叫剪映。做事的邏輯差不多。','電腦教室用電腦版，回家可以用手機版。'],
-  '素材庫':['放進專案、還沒排好的影片和照片。','像桌上的材料，還沒做成菜。'],
-  '預覽窗':['現在這一個畫面長什麼樣，觀眾就是看這個。','像看電視，不是看遙控器。'],
-  '時間軸':['底下那一條，用來排順序、切開、刪掉。','像故事的排隊隊伍。'],
-  '播放頭':['時間軸上會移動的線，代表「現在看到第幾秒」。','要切開時，先把這條線停在那個點。'],
-  '分割':['在播放頭的位置把一段切成兩段。','先切，才能把不要的那半刪掉。'],
-  '自動字幕':['軟體聽聲音，幫你打字。','它會打錯，你要自己改。'],
-  '軌道':['時間軸上的一層。影片一層、字幕一層、音樂一層。','像疊在一起的透明片。'],
-  '匯出':['把剪好的結果存成一支影片檔。','還沒匯出，別人就還看不到成品。']
+const words = {
+  '素材庫': ['還沒排好的影片、照片，先放在左邊。', '像桌上的材料，還沒下鍋。'],
+  '預覽窗': ['中間這個大畫面，就是觀眾會看到的。', '先看這裡，才知道字幕有沒有擋住人。'],
+  '時間軸': ['下面那一條，用來排隊、切開、刪掉。', '故事的順序，就是這一條的順序。'],
+  '播放頭': ['會移動的線，代表現在看到第幾秒。', '要切開時，先把線停在那個點。'],
+  '分割': ['在播放頭的位置，把一段切成兩段。', '先切，才能把不要的那一半刪掉。'],
+  '匯出': ['把剪好的結果存成一支影片檔。', '短影音常用直式，像手機螢幕。']
 };
-const names=['銜接','三塊區域','導入','分割刪除','排序','字幕','音樂','打開剪映','三題確認'];
-let page=0, score=0, pickedLabel='', imported={}, cutWait=false, order=[], qi=0;
-const imports=[
-  {id:'a',t:'發現對手 2 秒',ok:true},
-  {id:'b',t:'一直走路 12 秒',ok:false},
-  {id:'c',t:'反擊 4 秒',ok:true},
-  {id:'d',t:'跟這支片無關的聊天',ok:false}
+const clips = {
+  find: {title:'發現對手', img:'./assets/rivals-discover.webp', sec:2},
+  fight: {title:'反擊', img:'./assets/rivals-focus.webp', sec:4},
+  win: {title:'勝利', img:'./assets/rivals-view.webp', sec:2},
+  trip: {title:'去旅行', img:'./assets/travel.webp', sec:6},
+  walk: {title:'走路找人', img:'./assets/rivals-view.webp', sec:12, wait:true}
+};
+const steps = [
+  {t:'先看你要做出來的樣子', say:'左邊是整段錄影，很多時間在走路。右邊才是今天要的 15 秒：發現、反擊、勝利。', real:'剪映不會幫你決定留什麼。你先想好，再按按鈕。'},
+  {t:'認三個地方', say:'先點左邊、中間、下面。點到的地方會亮起來，並告訴你它在做什麼。', real:'真的剪映也是這三塊：左邊素材、中間預覽、下面時間軸。'},
+  {t:'把有用的畫面放進素材庫', say:'點下面四張。這支片要講「失誤後逆轉」，旅行那張不要放進來。', real:'按「導入」。進來的東西先待在左邊，還沒算進影片。'},
+  {t:'拖上時間軸', say:'點左邊三張，放到下面。中間會立刻換成你點的那張。', real:'用滑鼠從左邊拖到下面那一條。'},
+  {t:'切開，刪掉走路', say:'整段不小心都放上來了。先把播放頭停在走路後面，再分割，最後刪掉走路。', real:'播放頭對準要切的地方 → 剪刀（分割）→ 點不要的那段 → 刪除。'},
+  {t:'排成看得懂的順序', say:'播放看看。若觀眾還不知道發生什麼，就把片段往左或往右移。', real:'在時間軸上直接拖片段。順序就是觀眾理解的順序。'},
+  {t:'加一句字幕', say:'字要讓人讀到，也不能擋住對手。選一個位置，看中間的畫面。', real:'按「文字」打「只能用手槍」。字多就放下面。'},
+  {t:'音樂小聲一點', say:'拉桿子。人說話要聽得見，音樂只是氣氛。', real:'音樂在另一條軌道。點音樂，再拉小音量。'},
+  {t:'看一遍，再匯出', say:'按播放。開頭、過程、結果都在，字幕沒擋人，就可以存檔。', real:'右上角「匯出」。短影音選直式 9:16。不一定要上傳。'}
 ];
-const orderItems=[{id:'start',t:'開始：只能用手槍'},{id:'mid',t:'麻煩：快輸了'},{id:'end',t:'結果：逆轉或學到一招'}];
-const quizzes=[
-  {q:'分割是在做什麼？',ops:['加一個特效','在播放頭把一段切開','把音樂變大聲'],ok:1,why:'切開之後，才能刪掉不要的那一段。'},
-  {q:'自動字幕打好了，下一步？',ops:['直接匯出','自己讀一遍，改錯字','再加更多字蓋住畫面'],ok:1,why:'軟體只是聽聲音猜字，錯字要你改。'},
-  {q:'音樂太大時，觀眾會？',ops:['更專心看故事','聽不見你在說什麼','自動看懂字幕'],ok:1,why:'音樂是幫手。人要說的話，要聽得見。'}
-];
-const soft=[
-  '開剪映或 CapCut，選開始創作／新建專案。',
-  '按導入，把今天要用的影片放進素材庫。',
-  '把要的片段拖到下方時間軸。',
-  '上面預覽窗先看一遍，確認觀眾看到的是什麼。',
-  '播放頭停在要切的地方，按分割（剪刀）。',
-  '點不要的那一段，刪掉。留下發現、麻煩、結果。',
-  '拖曳排好順序。文字加上一句短字幕，不擋人。',
-  '音樂音量拉小。看一遍沒問題，再匯出。短影音用直式。'
-];
+let note = null;
+let step = 0;
+let bin = [];
+let timeline = [];
+let zones = {bin:false, preview:false, time:false};
+let playhead = false, split = false;
+let caption = '';
+let volume = 80;
+let timer = null;
 
-function gain(n){score+=n;xpText.textContent='進度 '+score;xp.style.width=Math.min(100,score)+'%'}
-function reveal(id){document.getElementById(id).classList.add('open')}
-function go(n){
-  if(n<0||n>=names.length)return;
-  document.getElementById('s'+page).hidden=true;
-  page=n;
-  document.getElementById('s'+page).hidden=false;
-  prev.disabled=page===0; next.disabled=page===names.length-1;
-  count.textContent=(page+1)+' / '+names.length;
-  bar.style.width=((page+1)/names.length*100)+'%';
-  if(page===8) renderQuiz();
-  window.scrollTo(0,0);
+function term(name){ return '<button class="term" data-word="'+name+'">'+name+'</button>'; }
+
+function stageHTML(){
+  if(step===0){
+    return '<div class="topbar"><b>今天的成品</b><span>同一段錄影，兩種看法</span></div><div class="compare" style="padding:12px"><div class="frame"><img src="./assets/rivals-view.webp" alt="走路很久的畫面"><span>原片：一直走路。觀眾不知道這支片要看什麼。</span></div><div class="frame good"><div style="display:grid;grid-template-columns:1fr 1fr 1fr"><img src="./assets/rivals-discover.webp" alt="發現"><img src="./assets/rivals-focus.webp" alt="反擊"><img src="./assets/rivals-view.webp" alt="勝利"></div><span>剪完：發現 → 反擊 → 勝利。15 秒就看懂。</span></div></div>';
+  }
+  const preview = currentFrame();
+  const binHTML = bin.map(id=>thumb(id, step===3)).join('') || '<p class="empty">左邊還是空的</p>';
+  const segs = timeline.map(id=>'<div class="seg'+(clips[id].wait?' wait':'')+'" style="'+(clips[id].wait?'':'background-image:linear-gradient(#0008,#0008),url('+clips[id].img+')')+'">'+clips[id].title+'<small style="display:block;font-weight:600">'+clips[id].sec+'秒</small>'+(step===5?'<span class="row"><button class="quiet" data-shift="'+id+'" data-dir="-1">往前</button></span>':'')+'</div>').join('');
+  const sources = step===2 ? '<div class="sources">'+['find','fight','trip','win'].map(id=>thumb(id,true)).join('')+'</div>' : '';
+  return '<div class="topbar"><b>剪映練習台</b><span>跟真的軟體同一套位置</span></div>'
+    +'<div class="workspace"><div class="bin'+(step===1&&!zones.bin?' zone-hot':'')+'" data-zone="bin"><h3>素材庫</h3>'+binHTML+'</div>'
+    +'<div class="preview'+(step===1&&!zones.preview?' zone-hot':'')+'" data-zone="preview">'
+    +(preview?'<img src="'+preview.img+'" alt="'+preview.title+'"><div class="playhead-tag">'+(playhead&&step>=4?'播放頭停在走路後面':'預覽窗')+'</div>'+(caption?'<div class="caption '+(caption==='擋臉'?'block':caption==='中間'?'mid':'low')+'">只能用手槍</div>':'') : '<div class="empty">預覽窗<br>放上時間軸後，這裡會出現畫面</div>')
+    +'</div></div><div class="timeline" data-zone="time"><h3>時間軸</h3><div class="tracks"><div class="track"><b>影片</b>'+(segs||'<span class="empty">還沒有片段</span>')+'</div>'
+    +(step>=6?'<div class="track"><b>字幕</b><span class="seg">'+(caption?'只能用手槍':'還沒加')+'</span></div>':'')
+    +(step>=7?'<div class="track"><b>音樂</b><i class="audio" style="flex:'+Math.max(1,volume/25)+';opacity:'+(volume/100)+'"></i></div>':'')
+    +'</div></div>'+sources;
 }
-prev.onclick=()=>go(page-1);
-next.onclick=()=>go(page+1);
-names.forEach((name,i)=>{
-  const b=document.createElement('button');
-  b.textContent=(i+1)+' '+name;
-  b.onclick=()=>{go(i);map.close()};
-  chapters.appendChild(b);
-});
-document.addEventListener('click',e=>{
-  const t=e.target.closest('.term'); if(!t) return;
-  const w=words[t.dataset.word]; if(!w) return;
-  wordTitle.textContent=t.dataset.word; wordMean.textContent=w[0]; wordEx.textContent=w[1]; word.showModal();
-});
-
-const labelText={'素材庫':'放素材的地方','預覽窗':'觀眾看到的畫面','時間軸':'排列和切開的地方'};
-const zones={素材庫:'z-bin',預覽窗:'z-preview',時間軸:'z-time'};
-['素材庫','預覽窗','時間軸'].sort(()=>Math.random()-0.5).forEach(name=>{
-  const b=document.createElement('button'); b.className='quiet'; b.textContent=name;
-  b.onclick=()=>{pickedLabel=name; mapFb.textContent='再點畫面上它該去的區域。'; mapFb.className='feedback'};
-  labels.appendChild(b);
-});
-uiMap.querySelectorAll('.zone').forEach(z=>z.onclick=()=>{
-  if(!pickedLabel){mapFb.textContent='先點上面的名字。';mapFb.className='feedback bad';return}
-  const ok=z.dataset.zone===pickedLabel;
-  document.getElementById(zones[z.dataset.zone]).textContent=ok?labelText[pickedLabel]:'不對，再試';
-  z.classList.toggle('hot',ok);
-  mapFb.textContent=ok?'對了。':'這個區域不是做這件事。';
-  mapFb.className='feedback'+(ok?'':' bad');
-  if(ok) gain(4);
-  pickedLabel='';
-});
-
-imports.forEach(item=>{
-  const b=document.createElement('button'); b.className='pick'; b.textContent=item.t;
-  b.onclick=()=>{imported[item.id]=!imported[item.id]; b.classList.toggle('on',imported[item.id])};
-  importGame.appendChild(b);
-});
-function checkImport(){
-  const ok=imports.every(item=>!!imported[item.id]===item.ok);
-  importFb.textContent=ok?'選得好：有故事的留下，純等待和無關的先不進這支片。':'再看一次：走路很久、跟主題無關的，可以先不進。';
-  importFb.className='feedback'+(ok?'':' bad');
-  if(ok) gain(8);
+function thumb(id, clickable){
+  const c = clips[id];
+  return '<button class="thumb" data-clip="'+id+'" '+(clickable?'':'disabled')+'><img src="'+c.img+'" alt=""><span>'+c.title+'<small>'+c.sec+' 秒</small></span></button>';
 }
-
-const cutData=[['等待走路','8 秒',true],['發現對手','2 秒',false],['失誤','3 秒',false],['反擊','4 秒',false],['勝利','2 秒',false]];
-function resetCut(){
-  cutWait=false; cuts.innerHTML='';
-  cutData.forEach((c,i)=>{
-    const b=document.createElement('button'); b.className='clip';
-    b.innerHTML='<b>'+c[0]+'</b>'+c[1];
-    b.onclick=()=>{ if(i===0){cutWait=!cutWait; b.classList.toggle('cut',cutWait)} };
-    cuts.appendChild(b);
+function currentFrame(){
+  if(!timeline.length) return null;
+  const id = timeline.find(x=>!clips[x].wait) || timeline[0];
+  return clips[id];
+}
+function coachHTML(){
+  const s = steps[step];
+  let extra = '';
+  if(step===4) extra = '<div class="row"><button id="doHead" class="quiet">1. 播放頭停好</button><button id="doSplit" class="quiet">2. 分割</button><button id="doDel" class="quiet">3. 刪掉走路</button></div>';
+  if(step===5) extra = '<div class="row"><button id="play" class="quiet">▶ 播放看看</button></div>';
+  if(step===6) extra = '<div class="row"><button class="quiet" data-cap="中間">放中間</button><button class="quiet" data-cap="下面">放下面</button><button class="quiet" data-cap="擋臉">蓋住畫面</button></div>';
+  if(step===7) extra = '<label>音樂音量 <output id="volOut">'+volume+'</output></label><input class="vol" id="vol" type="range" min="0" max="100" value="'+volume+'">';
+  if(step===8) extra = '<div class="row"><button id="play">▶ 播放我的 15 秒</button></div>';
+  return '<div class="stepno">第 '+(step+1)+' 步 / '+steps.length+'</div><h1>'+s.t+'</h1><p class="say">'+s.say+'</p><div class="real"><b>到真的剪映</b><p>'+s.real+'</p><p>看不懂的詞可以點：'+term('素材庫')+' '+term('預覽窗')+' '+term('時間軸')+' '+term('播放頭')+' '+term('分割')+' '+term('匯出')+'</p></div>'+extra+'<p class="feedback" id="fb"></p><div class="row"><button class="quiet" id="back">上一步</button><button id="forward">這步做好了 →</button></div>';
+}
+function render(){
+  stopPlay();
+  if(step===4 && !timeline.includes('walk')) timeline.unshift('walk');
+  stage.innerHTML = stageHTML();
+  coach.innerHTML = coachHTML();
+  bind();
+  if(note){ const fb=document.getElementById('fb'); fb.textContent=note.text; fb.className='feedback'+(note.bad?' bad':''); }
+}
+function ready(){
+  if(step===1) return zones.bin && zones.preview && zones.time;
+  if(step===2) return ['find','fight','win'].every(id=>bin.includes(id));
+  if(step===3) return ['find','fight','win'].every(id=>timeline.includes(id));
+  if(step===4) return !timeline.includes('walk') && split;
+  if(step===5) return timeline.join()==='find,fight,win';
+  if(step===6) return caption==='下面' || caption==='中間';
+  if(step===7) return volume>=15 && volume<=45;
+  return true;
+}
+function say(text, bad){ note={text, bad}; const fb=document.getElementById('fb'); if(!fb) return; fb.textContent=text; fb.className='feedback'+(bad?' bad':''); }
+function bind(){
+  document.getElementById('back').onclick=()=>{ if(step>0){step--; render()} };
+  document.getElementById('forward').onclick=()=>{
+    if(!ready()){ say(hint(), true); return }
+    if(step<steps.length-1){ note=null; step++; render() } else say('這支 15 秒可以收了。打開剪映，用你自己的四格計畫再做一次。');
+  };
+  stage.querySelectorAll('[data-zone]').forEach(el=>el.onclick=()=>{
+    if(step!==1) return;
+    zones[el.dataset.zone]=true;
+    const name = el.dataset.zone==='bin'?'素材庫':el.dataset.zone==='preview'?'預覽窗':'時間軸';
+    say(name+'：'+words[name][0]);
+    render();
+  });
+  stage.querySelectorAll('[data-clip]').forEach(el=>el.onclick=()=>useClip(el.dataset.clip));
+  const head=document.getElementById('doHead'), sp=document.getElementById('doSplit'), del=document.getElementById('doDel');
+  if(head) head.onclick=()=>{ playhead=true; say('播放頭已停在走路後面。下一步按分割。'); render() };
+  if(sp) sp.onclick=()=>{ if(!playhead){say('先把播放頭停好，剪映才知道切哪裡。',true);return} split=true; say('已經切開。現在刪掉走路那段。'); };
+  if(del) del.onclick=()=>{ if(!split){say('還沒切，不能只刪一半。先分割。',true);return} timeline=timeline.filter(id=>id!=='walk'); say('走路刪掉了。剩下的才是故事。'); render() };
+  stage.querySelectorAll('[data-shift]').forEach(el=>el.onclick=ev=>{ ev.stopPropagation(); move(el.dataset.shift, +el.dataset.dir) });
+  const play=document.getElementById('play');
+  if(play) play.onclick=playFilm;
+  document.querySelectorAll('[data-cap]').forEach(b=>b.onclick=()=>{
+    caption=b.dataset.cap;
+    say(caption==='擋臉'?'這會擋住要看的人，換個位置。':'這個位置讀得到，也看得到畫面。');
+    render();
+  });
+  const vol=document.getElementById('vol');
+  if(vol) vol.oninput=()=>{ volume=+vol.value; document.getElementById('volOut').textContent=volume; const bar=stage.querySelector('.audio'); if(bar){ bar.style.flex=Math.max(1,volume/25); bar.style.opacity=volume/100 } say(volume>45?'還是太大，說話會被蓋住。':volume<15?'音樂幾乎沒有了，拉高一點。':'這個大小，氣氛在，人聲也在。'); };
+  document.querySelectorAll('.term').forEach(b=>b.onclick=()=>{
+    const w=words[b.dataset.word]; wordTitle.textContent=b.dataset.word; wordMean.textContent=w[0]; wordEx.textContent=w[1]; word.showModal();
   });
 }
-function checkCut(){
-  cutFb.textContent=cutWait?'可以。等待沒有新事情，切開後刪掉。':'先點掉「等待走路」。';
-  cutFb.className='feedback'+(cutWait?'':' bad');
-  if(cutWait) gain(8);
+function hint(){
+  return ['先看完兩邊的差別再繼續。','三個區域都點過一次。','三張對戰畫面都放進左邊，旅行先不要。','三張都放到下面的時間軸。','依序：播放頭、分割、刪掉走路。','排成發現 → 反擊 → 勝利，再按下一步。','字幕放中間或下面，不要擋臉。','音量調到中間偏小。',''][step];
 }
-resetCut();
-
-function resetOrder(){order=[]; paintOrder()}
-function paintOrder(){
-  orderBtns.innerHTML='';
-  orderItems.forEach(item=>{
-    const b=document.createElement('button'); b.className='quiet'; b.textContent=item.t;
-    b.disabled=order.includes(item.id);
-    b.onclick=()=>{order.push(item.id); paintOrder();
-      const ok=order.join()==='start,mid,end';
-      if(order.length===3){orderFb.textContent=ok?'順序對了。':'觀眾會迷路。要先知道任務，再看到麻煩，最後看到結果。'; orderFb.className='feedback'+(ok?'':' bad'); if(ok) gain(8)}
-    };
-    orderBtns.appendChild(b);
-  });
-  orderLine.textContent='目前：'+(order.map(id=>orderItems.find(x=>x.id===id).t).join(' → ')||'（還沒點）');
+function useClip(id){
+  if(step===2){
+    if(id==='trip'){ say('這張是旅行，跟「逆轉」無關，先留在外面。', true); return }
+    if(!bin.includes(id)) bin.push(id);
+    say(clips[id].title+' 已放進素材庫。它還不是影片的一部分。');
+    render();
+  } else if(step===3){
+    if(!timeline.includes(id)) timeline.push(id);
+    say('預覽窗換成「'+clips[id].title+'」。觀眾現在會看到這張。');
+    render();
+  }
 }
-resetOrder();
-
-function placeCap(mode){
-  const el=capText;
-  el.className='cap '+(mode==='mid'?'mid':mode==='low'?'low':'block');
-  const ok=mode!=='block';
-  capFb.textContent=mode==='block'?'這會擋住要看的人。':'這句很短，放中間或下方都可以，只要不擋人。';
-  capFb.className='feedback'+(ok?'':' bad');
-  if(ok){gain(4); reveal('a5')}
+function move(id, dir){
+  const i = timeline.indexOf(id);
+  const j = i+dir;
+  if(j<0 || j>=timeline.length) return;
+  const tmp = timeline[i]; timeline[i]=timeline[j]; timeline[j]=tmp;
+  say('現在順序：'+timeline.map(id=>clips[id].title).join(' → '));
+  render();
 }
-vol.oninput=()=>{volOut.textContent=vol.value; volFb.textContent=vol.value>55?'太大聲。':vol.value<15?'幾乎沒音樂，氣氛會平一點。':'這個範圍，說話還聽得見。'; volFb.className='feedback'};
-function checkVol(){
-  const n=+vol.value, ok=n>=15&&n<=55;
-  volFb.textContent=ok?'音量可以。人聲還在。':'再調。大約落在中間偏小。';
-  volFb.className='feedback'+(ok?'':' bad');
-  if(ok){gain(6); reveal('a6')}
+function playFilm(){
+  stopPlay();
+  const frames = timeline.filter(id=>!clips[id].wait);
+  if(!frames.length){ say('時間軸還沒有畫面。', true); return }
+  let i=0;
+  const show=()=>{
+    const c=clips[frames[i%frames.length]];
+    const img=stage.querySelector('.preview img');
+    if(img) img.src=c.img;
+    i++;
+  };
+  show();
+  timer=setInterval(show, 900);
+  say('跟著看：'+frames.map(id=>clips[id].title).join(' → ')+(caption?'。字幕：「只能用手槍」':''));
 }
-
-soft.forEach((text,i)=>{
-  const li=document.createElement('li');
-  const b=document.createElement('button'); b.className='quiet'; b.textContent='這步我會了';
-  b.onclick=()=>{b.disabled=true; b.textContent='完成'; li.dataset.done='1'; gain(2)};
-  li.append(text+' ', b); softSteps.appendChild(li);
-});
-function finishSoft(){
-  const done=[...softSteps.children].filter(li=>li.dataset.done).length;
-  softFb.textContent=done===8?'八步都走過。下一頁做三題確認。':'還有 '+(8-done)+' 步。做過再勾，不要只看文字。';
-  softFb.className='feedback'+(done===8?'':' bad');
-  if(done===8) reveal('a7');
-}
-function renderQuiz(){
-  const q=quizzes[qi]; if(!q){quizQ.textContent='三題結束。你現在知道按鈕是在完成判斷，不是在收集特效。'; quizOps.innerHTML=''; return}
-  quizQ.textContent=(qi+1)+' / 3　'+q.q; quizOps.innerHTML='';
-  q.ops.forEach((op,i)=>{
-    const b=document.createElement('button'); b.className='quiet'; b.textContent=op;
-    b.onclick=()=>{const ok=i===q.ok; quizFb.textContent=(ok?'對。':'再看：')+q.why; quizFb.className='feedback'+(ok?'':' bad'); if(ok){gain(5); qi++; setTimeout(renderQuiz,700)}};
-    quizOps.appendChild(b);
-  });
-}
-document.addEventListener('keydown',e=>{
-  if(['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)||map.open||word.open) return;
-  if(e.key==='ArrowRight') go(page+1);
-  if(e.key==='ArrowLeft') go(page-1);
-});
-go(0);
-window.addEventListener('load',()=>{ if(window.DirectorToolbox) DirectorToolbox.mount({fab:false}) });
+function stopPlay(){ if(timer){clearInterval(timer); timer=null} }
+render();
+window.addEventListener('load', ()=>{ if(window.DirectorToolbox) DirectorToolbox.mount({fab:false}) });
 </script>
 </body>
 </html>
