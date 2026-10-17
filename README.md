@@ -11,10 +11,10 @@
 ## 後續新增課程
 
 1. 第二堂：lesson2.html（剪輯任務控制台＋勇者遠征），請一起上傳 lesson2-game.js、lesson2-game.css、lesson2-arcade.js、lesson2-arcade.css、lesson2-editor.js、lesson2-editor.css、lesson2-rpg.js、lesson2-rpg.css 與 assets/vendor/。
-2. 新增第三堂時，建立 lesson3.html，再複製一個 courses.js 項目，設定 number 與 href。全部使用相對路徑，所以儲存庫名稱改變也能使用。
-3. 課程頁都要在 `</head>` 前保留 `auth.js` 與 `CourseGate.guardLesson()`，以及 `toolbox.js`（要用工具箱才需要）。
+2. 第三堂：lesson3.html（剪映／CapCut。先用互動搞懂介面，再走軟體步驟）。
+3. 再加課程時，建立 lessonN.html，並在 courses.js 加一筆。課程頁在 `</head>` 前保留 `auth.js` 與 `CourseGate.guardLesson()`。
 
-第一堂：lesson1.html；第二堂：lesson2.html；首頁：index.html。
+第一堂：lesson1.html；第二堂：lesson2.html；第三堂：lesson3.html；首頁：index.html。
 
 ## 導演工具箱
 
@@ -69,3 +69,8 @@
 ## 圖片教材
 
 圖片已隨套件放在 assets/，請一起上傳。點圖可放大觀察，來源見「圖片來源.md」。名詞解釋、答案面板、拖曳活動與課程目錄維持不變。
+
+
+### 第二堂 AI 剪輯工作台
+
+頁尾用四格故事銜接「任務與素材 → 規範指令 → 可修改鏡頭表 → 剪映操作」。`lesson2-ai.js/css` 提供本機規則草稿、AI JSON回覆檢查、文字分鏡預覽、專案規範.md、操作單.txt與字幕草稿.srt下載。沒有模型API、素材上傳或剪映自動控制。字幕時間為規劃值，必須依真實原片校對。國際版CapCut文件作功能參考，實際剪映版本需確認字幕匯入入口。

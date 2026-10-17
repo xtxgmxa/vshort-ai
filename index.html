@@ -11,7 +11,7 @@
   <main>
     <small>課程目錄 / CREATOR LAB</small>
     <h1>短影音剪輯 × AI 互動課</h1>
-    <p class="intro">先看懂，再動手。第一堂建立觀念，第二堂在模擬剪輯介面練習判斷，第三堂才會進剪映實作。</p>
+    <p class="intro">先看懂，再動手。第一堂建立觀念，第二堂在模擬介面練習判斷，第三堂進剪映／CapCut。</p>
     <div style="margin:14px 0 8px"><button id="openTools">🧰 先打開工具箱試試</button></div>
     <h2>選一堂，開始你的任務</h2>
     <div class="cards" id="courses"></div>
@@ -26,7 +26,8 @@
     const host = document.getElementById('courses');
     const photos = {
       '01': './assets/rivals-view.webp',
-      '02': './assets/rivals-focus.webp'
+      '02': './assets/rivals-focus.webp',
+      '03': './assets/unboxing.webp'
     };
     COURSES.forEach(c => {
       const a = document.createElement('a');
