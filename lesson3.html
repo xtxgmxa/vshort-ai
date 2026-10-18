@@ -9,6 +9,7 @@
 <script>CourseGate.guardLesson()</script>
 <script src="./toolbox.js" defer></script>
 <link rel="stylesheet" href="./lesson3.css">
+<script src="./lesson3-specs.js" defer></script>
 <script src="./lesson3.js" defer></script>
 </head>
 <body>
@@ -23,7 +24,7 @@
 <main>
   <section class="intro" aria-label="本堂目標">
     <div><div class="eyebrow">LEVEL 03 / 剪映電腦版實作</div><h1>今天，真的剪出一支片。</h1>
-    <p>前兩堂會判斷，這一堂讓手跟上。打開剪映，完成一支 <strong>15–30 秒</strong>、有一句字幕的小短片。</p></div>
+    <p>先分清「影片格式、畫面規格、檔案容量」，再打開剪映，完成一支 <strong>15–30 秒</strong>、有一句字幕的小短片。</p></div>
     <div class="outcome"><span>今天帶走</span><strong>一個 MP4 影片檔</strong><small>找得到 · 做得出 · 說得出改了什麼</small></div>
   </section>
   <div class="bridge"><span>第一堂 <b>想給觀眾看什麼</b></span><i>→</i><span>第二堂 <b>在模擬器練決定</b></span><i>→</i><span class="active">第三堂 <b>在剪映完成作品</b></span></div>
@@ -31,14 +32,16 @@
     <p>每人一份相同素材：①準備紙飛機（含開頭等待）②試飛（中間含一次等候）③落地與反應。三段合計約 30–45 秒，再準備一段可使用的背景音樂。這些影片需老師課前自備，本頁不附實拍素材。</p>
     <p>也可換成投籃、積木或自己的遊戲錄影，操作順序一樣。先由老師示範完整原片與成品，讓孩子知道今天要做出什麼。</p>
     <p>以剪映專業版／CapCut 電腦版帶課。畫面配置、按鈕名稱可能隨版本不同；先找功能名稱，再看位置。投影教材與剪映切換使用，操作時請切回真正的剪映。</p>
-    <p><a href="./guide/lesson3-60min.md">老師的 60 分鐘帶課稿 ↗</a> · <a href="./lesson2.html">回看第二堂</a></p>
+    <p>完整課程約 75 分鐘，含 15 分鐘規格小教室；帶課稿另附 60 分鐘精簡走法。</p>
+    <p><a href="./guide/lesson3-60min.md">老師帶課稿（75／60 分鐘）↗</a> · <a href="./lesson2.html">回看第二堂</a></p>
   </details>
   <nav class="chapters" id="chapters" aria-label="選擇實作步驟"></nav>
   <section class="lesson" aria-labelledby="stepTitle">
     <div class="lesson-top"><span class="eyebrow" id="stepMeta"></span><span id="stepCount"></span></div>
     <h2 id="stepTitle" tabindex="-1"></h2><p class="goal" id="stepGoal"></p>
-    <div class="cue"><span>老師 CUE，你先說</span><h3 id="cueQuestion"></h3><p>先用手指出位置，再說「我要先＿＿，然後＿＿」。</p><button id="revealButton" aria-expanded="false" aria-controls="cueAnswer">說完了，看解答 ↓</button><div id="cueAnswer" class="answer" hidden></div></div>
+    <div class="cue"><span>老師 CUE，你先說</span><h3 id="cueQuestion"></h3><p id="cuePrompt">先用手指出位置，再說「我要先＿＿，然後＿＿」。</p><button id="revealButton" aria-expanded="false" aria-controls="cueAnswer">說完了，看解答 ↓</button><div id="cueAnswer" class="answer" hidden></div></div>
     <div class="workspace">
+      <section id="specPanel" class="spec-panel" hidden aria-label="影片規格互動小教室"></section>
       <section class="map-panel" aria-label="剪映介面定位練習">
         <div class="panel-heading"><strong>到真正的剪映，找同一個地方</strong><span>位置示意 · 不是軟體截圖</span></div>
         <div class="editor-map" id="editorMap">
@@ -51,11 +54,11 @@
         <p id="mapHelp" class="map-help">點區域，練習說出它的工作。亮框是這一步會用到的位置。</p>
         <div id="zoneFeedback" class="zone-feedback" role="status"></div>
       </section>
-      <section class="do-panel" aria-labelledby="doTitle"><span class="eyebrow">切回剪映，跟著做</span><h3 id="doTitle">一次只做這幾件事</h3><ol id="actions"></ol><div class="proof"><span>做完看哪裡？</span><p id="proof"></p></div><details class="rescue"><summary>卡住了？先檢查這裡</summary><p id="rescue"></p></details></section>
+      <section class="do-panel" aria-labelledby="doTitle"><span class="eyebrow" id="doEyebrow">切回剪映，跟著做</span><h3 id="doTitle">一次只做這幾件事</h3><ol id="actions"></ol><div class="proof"><span>做完看哪裡？</span><p id="proof"></p></div><details class="rescue"><summary>卡住了？先檢查這裡</summary><p id="rescue"></p></details></section>
     </div>
     <aside class="teacher-note" id="teacherNote" hidden></aside>
     <section id="challenge" class="challenge" hidden aria-label="換情境獨立挑戰"></section>
-    <div class="step-bottom"><label><input id="doneCheck" type="checkbox"> 我已在剪映完成，並看過結果 <small>自己勾選；網頁不會檢查你的剪映</small></label><span id="doneCount" role="status"></span></div>
+    <div class="step-bottom"><label><input id="doneCheck" type="checkbox"> <span id="doneLabel">我已在剪映完成，並看過結果</span> <small>自己勾選；網頁不會檢查你的剪映</small></label><span id="doneCount" role="status"></span></div>
   </section>
   <div class="navigation"><button id="prevButton" class="quiet">← 上一步</button><span>← → 換步驟 · 答案每頁重新揭曉</span><button id="nextButton">下一步 →</button></div>
   <details class="bonus"><summary>先完成影片，再選一個加分操作：放大畫面／變速</summary>

@@ -40,9 +40,9 @@
       proof:'實際播放能聽清「成功了」或落地反應；畫面結束後不會只剩音樂一直播。',rescue:'沒聲音時先看預覽是否靜音、電腦輸出裝置與音軌是否靜音。不要把音樂與影片一起選取後才調音量。',teacher:'固定百分比不是合格標準；素材音量不同，要用耳朵確認。若原片沒有反應聲，改以「音樂不刺耳、尾端對齊」驗收。'},
     {tab:'匯出',phase:'41–47 分 · 完成真正影片',title:'剪映裡看得到，還要做成影片檔',goal:'完整看一次，再把作品匯出到自己找得到的資料夾。',
       cue:'我把剪映關掉，朋友就能用播放器打開我的專案嗎？',answer:'專案是可繼續修改的工作紀錄。要用一般播放器觀看，需要<b>匯出影片檔</b>；匯出後還要找到它，實際播放。',zones:['preview','timeline'],
-      actions:['把播放頭移回開頭，完整播放：順序對、沒黑畫面、字幕出現時間對、重要聲音聽得到。','右上角「匯出／導出」：確認檔名和儲存位置，格式選 MP4；直式作品可用 1080p，幀率先沿用素材／專案設定。','等匯出完成，到指定資料夾找到 MP4，用播放器從頭看一次。'],
+      actions:['把播放頭移回開頭，完整播放：順序對、沒黑畫面、字幕出現時間對、重要聲音聽得到。','右上角「匯出／導出」：確認檔名、儲存位置與 MP4。今天選直式 1080 × 1920；fps 用老師確認的值（例如 30）。若只顯示 1080p，也要確認方向和實際尺寸。','等匯出完成，到指定資料夾找到 MP4，用播放器從頭看一次。'],
       proof:'在剪映以外的播放器能看完約 15–30 秒的影片，字幕和聲音都正常。記得自己存在哪個資料夾。',rescue:'找不到檔案？回匯出視窗確認儲存路徑，或按完成後的「開啟資料夾」。若有付費素材提示，先移除該項，改用今天的基本功能與自備素材。',teacher:'先讓孩子口頭說出儲存位置再匯出；不是按下匯出就算完成。15–30 秒是練取捨的目標；稍長時先找多餘等待，不為湊秒數剪斷關鍵動作。課前用教室版本試匯出一次。'},
-    {tab:'獨立挑戰',phase:'47–57 分 · 不看步驟再試一次',title:'換成投籃影片，你還找得到嗎？',goal:'先回答下面四個新情境，再回剪映完成一次獨立修改。',
+    {tab:'獨立挑戰',phase:'47–57 分 · 不看步驟再試一次',title:'換成投籃影片，你還找得到嗎？',goal:'六題情境可輪流口頭回答，再回剪映完成一次獨立修改。',
       cue:'老師只說「讓第一句字幕早一點消失」，你能指出要選誰、去哪裡改嗎？',answer:'選<b>時間軸上的第一段字幕</b>，把它的<b>右邊緣往左收</b>，再播放確認。不是刪影片，也不是只移動播放頭。',zones:[],
       actions:['兩人一組：A 操作、B 只口述；在自己的作品把第一句字幕縮短一點，再交換角色。','老師加一題：「把片頭的等待再拿掉一點」或「把音樂再小一點」。先說要選誰，再自己操作。','改完先預覽，再匯出成「紙飛機_我的代號_v2.mp4」，打開檔案比較。'],
       proof:'沒有照著老師的滑鼠走，也能完成一項修改，說出選了哪個片段、改了什麼、在哪裡看到結果。',rescue:'想不起來時先問自己：要改的是影片、文字還是音樂？先選對那條軌，再找設定或邊緣。必要時回看前面的步驟後重試。',teacher:'網頁選擇題只檢查理解，不代表已會用軟體。實作觀察三件事：能否自行選對物件、完成操作、播放驗證。對需要幫忙的孩子給「先選誰」提示，不直接代按。',challenge:true},
@@ -51,6 +51,8 @@
       actions:['播放匯出的影片給同伴看，請對方指出一個看得清楚的地方。','說一句：「我選了＿＿，用了＿＿，所以畫面／聲音變成＿＿。」','最後指給老師看：素材庫、預覽窗、時間軸、設定區；說出匯出影片的位置。'],
       proof:'你有可播放的影片檔，並能解釋至少一項修改。還沒完成的地方，能說出卡在哪一步。',rescue:'來不及做音樂也沒關係，先確保基本順序、修剪、一句字幕與影片匯出完成；下次再補加分操作。',teacher:'不以特效多寡評分。收課觀察：能指出四區、分清選取與播放頭、完成修剪或分割刪除、調字幕時間、找到匯出檔案。記下需要下次補練的操作。'}
   ];
+  steps.slice(1).forEach(s=>{s.phase=s.phase.replace(/^(\d+)–(\d+)/,(_,a,b)=>`${String(Number(a)+15).padStart(2,'0')}–${String(Number(b)+15).padStart(2,'0')}`)});
+  steps.splice(1,0,...window.Lesson3Specs.steps);
   const zoneInfo = {
     library:'① 素材庫：放原始影片和音樂。材料在這裡，不代表已經出現在作品裡。',
     preview:'② 預覽窗：看播放頭這一刻的畫面，也能檢查字幕位置、畫面有沒有被裁掉。',
@@ -63,6 +65,10 @@
     {q:'「進球了！」字幕出現太久，文字內容與位置都正確。改哪裡？',options:['把預覽窗的字拖高','把整段影片刪掉','選字幕片段，縮短右邊緣'],correct:2,why:'改出現多久，要調時間軸上的字幕長度。',hint:'字的「位置」和「出現多久」在不同地方調整。'},
     {q:'剛降低音量，音樂沒變，人聲卻變小了。先查什麼？',options:['電腦螢幕亮度','是不是選到了影片片段','再匯入一次音樂'],correct:1,why:'先選誰，再改誰。先復原，再選音樂片段。',hint:'右側改的是目前選取的物件，先看誰有選取外框。'}
   ];
+  questions.push(
+    {q:'手機直式成品要 1080 × 1920 px，第一支素材卻是橫式。怎麼做？',options:['一律照第一支素材，不用看設定','確認畫布與匯出為直式，再調整素材放法','把人拉長填滿就好'],correct:1,why:'素材、工作畫框與匯出規格要分開確認；可留邊或裁切重構，不能把人拉長。',hint:'原料是什麼形狀，不代表交出去的作品一定要同形狀。'},
+    {q:'哪一組都是影片檔案格式？',options:['MP4、MOV','fps、px','MB、GB'],correct:0,why:'MP4、MOV 是容器格式；fps 是幀率單位、px 是像素單位，MB／GB 是容量單位。',hint:'這題問檔案是哪一種容器，不是畫面、幀率或儲存空間的單位。'}
+  );
   let current = 0, revealed = false, recall = false, teacher = false;
   const completed = new Set(), attempts = new Map();
   function drawChapters() {
@@ -104,6 +110,9 @@
     $('revealButton').textContent=revealed?'收起解答 ↑':'說完了，看解答 ↓';
     $('revealButton').setAttribute('aria-expanded',String(revealed));
     const hidden=recall&&!revealed;
+    $('specPanel').hidden=!steps[current].spec||hidden;
+    document.querySelector('.map-panel').hidden=!!steps[current].spec;
+    document.querySelector('.workspace').classList.toggle('spec-recall',!!steps[current].spec&&hidden);
     $('actions').hidden=hidden;$('proof').parentElement.hidden=hidden;
     document.querySelector('.rescue').hidden=hidden;
     document.querySelectorAll('.zone').forEach(b=>b.classList.toggle('hot',!hidden&&steps[current].zones.includes(b.dataset.zone)));
@@ -111,11 +120,17 @@
     $('zoneFeedback').textContent='';
     document.querySelectorAll('.zone').forEach(b=>b.disabled=hidden);
     $('challenge').hidden=!steps[current].challenge||hidden;
-    $('doTitle').textContent=hidden?'先說要選誰、去哪裡改，再揭曉。':'一次只做這幾件事';
+    const specTitles={formats:'一起比較不同影片格式',capacity:'先看檔案佔多少空間'};
+    $('doTitle').textContent=hidden?(steps[current].spec?'先說你的判斷，再揭曉。':'先說要選誰、去哪裡改，再揭曉。'):(specTitles[steps[current].spec]||(steps[current].spec?'一起看圖，把數字讀懂':'一次只做這幾件事'));
   }
   function draw() {
     const s=steps[current];
+    $('cuePrompt').textContent=s.spec?'先說你的判斷和理由；不用急著背數字。':'先用手指出位置，再說「我要先＿＿，然後＿＿」。';
+    $('doEyebrow').textContent=s.spec?'看圖、比較、用自己的話說':'切回剪映，跟著做';
     $('stepMeta').textContent=s.phase;$('stepCount').textContent=`${current+1} / ${steps.length}`;
+    $('specPanel').replaceChildren();
+    if(s.spec) window.Lesson3Specs.render($('specPanel'),s.spec);
+    $('doneLabel').textContent=s.spec?'我能用自己的話說出規格差別':'我已在剪映完成，並看過結果';
     $('stepTitle').textContent=s.title;$('stepGoal').textContent=s.goal;
     $('cueQuestion').textContent=s.cue;$('cueAnswer').innerHTML=s.answer;
     $('actions').replaceChildren(...s.actions.map(text=>{const li=document.createElement('li');li.textContent=text;return li}));

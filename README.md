@@ -11,7 +11,7 @@
 ## 後續新增課程
 
 1. 第二堂：lesson2.html（剪輯任務控制台＋勇者遠征），請一起上傳 lesson2-game.js、lesson2-game.css、lesson2-arcade.js、lesson2-arcade.css、lesson2-editor.js、lesson2-editor.css、lesson2-rpg.js、lesson2-rpg.css 與 assets/vendor/。
-2. 第三堂：lesson3.html（剪映實作課，請一起上傳 lesson3.js、lesson3.css）。用真實軟體完成短片，搭配介面定位、CUE 問答、卡關提示與獨立修改挑戰；帶課稿見 guide/lesson3-60min.md。
+2. 第三堂：lesson3.html（剪映實作課，請一起上傳 lesson3.js、lesson3-specs.js、lesson3.css）。先用六頁互動分別認識畫面比例、像素尺寸、幀率、影片檔案格式（MP4／MOV 等）、檔案容量，以及素材／專案／匯出規格，再以真實軟體完成短片。格式與規格單位分開教。完整約 75 分鐘，含 60 分鐘精簡走法；帶課稿見 guide/lesson3-60min.md。
 3. 再加課程時，建立 lessonN.html，並在 courses.js 加一筆。課程頁在 `</head>` 前保留 `auth.js` 與 `CourseGate.guardLesson()`。
 
 第一堂：lesson1.html；第二堂：lesson2.html；第三堂：lesson3.html；首頁：index.html。
