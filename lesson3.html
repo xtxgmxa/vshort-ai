@@ -3,153 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>第三堂｜剪映對照課－小導演任務</title>
+<title>第三堂｜剪映實作：完成我的第一支短片</title>
 <style id="gate-boot">html:not(.gate-ready) body>*:not(#gate-overlay){visibility:hidden!important}</style>
 <script src="./auth.js"></script>
-<script src="./toolbox.js"></script>
 <script>CourseGate.guardLesson()</script>
-<style>
-:root{--bg:#101724;--ink:#f4f7fb;--muted:#9aadc4;--mint:#72efb4;--line:#31445f;--cyan:#4fd2ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
-button{font:inherit;cursor:pointer;border:1px solid var(--mint);background:var(--mint);color:#102018;border-radius:8px;padding:9px 14px;font-weight:800}
-.quiet{background:transparent;color:var(--ink);border-color:var(--line);font-weight:600}
-header{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 3vw;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101724;z-index:4}
-header nav{display:flex;gap:8px;flex-wrap:wrap}header a{color:var(--mint);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-main{max-width:1100px;margin:auto;padding:18px 16px 36px}
-.lead{margin-bottom:14px}.lead h1{font-size:clamp(28px,4vw,40px);margin:6px 0}.lead p{color:#d5deea;font-size:18px}
-.pair{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:14px}
-.app{background:#141a22;border:1px solid #2c3848;border-radius:14px;overflow:hidden}
-.appbar{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:#0e131a;font-size:13px;color:#c9d4e2}
-.appbar b{color:var(--cyan)}
-.mark{border:1px dashed #3d516c;border-radius:8px;padding:6px 8px;color:#9aadc4}
-.mark.on{border:2px solid var(--cyan);color:#fff;box-shadow:0 0 0 3px #4fd2ff33;background:#163246}
-.body{display:grid;grid-template-columns:148px 1fr;min-height:220px}
-.media,.screen{border-bottom:1px solid #2c3848}.media{padding:8px}
-.screen{position:relative;min-height:220px;background:#070b10 center/cover no-repeat;display:flex;align-items:flex-end;justify-content:center}
-.screen span{margin:16px;background:#000a;padding:6px 10px;border-radius:6px}
-.tools{display:flex;gap:6px;flex-wrap:wrap;padding:8px}
-.tool{background:#1c2633;color:#d5deea;border:1px solid #3d516c;border-radius:8px;padding:8px 10px;font-weight:700}
-.tool.on{border-color:var(--cyan);color:#fff;background:#163246}
-.tracks{padding:0 8px 10px;display:flex;flex-direction:column;gap:6px}
-.track{display:flex;gap:6px;align-items:center;min-height:42px;background:#0e141c;border-radius:8px;padding:6px}
-.track i{width:36px;flex:none;color:#8ea0b8;font-style:normal;font-size:12px}
-.chip{height:32px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:13px;font-weight:800}
-.c1{background:#24556a}.c2{background:#5a3b2e}.c3{background:#2f5a3d}.c4{background:#3d3a68}
-.side{background:#1a2538;border:1px solid var(--line);border-radius:14px;padding:16px}
-.kicker{color:var(--mint);font-weight:800;font-size:13px}
-.side h2{margin:6px 0 8px;font-size:26px;line-height:1.3}
-.from,.to{border-radius:10px;padding:10px 12px;margin:8px 0}
-.from{background:#121b2b;border-left:4px solid var(--mint)}
-.to{background:#102028;border-left:4px solid var(--cyan)}
-.from b,.to b{display:block;font-size:13px;margin-bottom:4px}
-ol{margin:8px 0;padding-left:1.2em}li{margin:6px 0;font-size:17px}
-.see{color:#d5deea}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.dots{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.dots button{width:34px;height:34px;padding:0;border-radius:8px}
-.dots button.now{background:var(--cyan);color:#06202a;border-color:var(--cyan)}
-.term{border:0;border-bottom:1px dashed var(--mint);background:transparent;color:inherit;padding:0;border-radius:0;font:inherit;cursor:help}
-dialog{background:#1a2538;color:var(--ink);border:1px solid var(--line);border-radius:12px;width:min(460px,92vw);padding:16px}dialog::backdrop{background:#000a}
-@media(max-width:860px){.pair,.body{grid-template-columns:1fr}}
-</style>
+<script src="./toolbox.js" defer></script>
+<link rel="stylesheet" href="./lesson3.css">
+<script src="./lesson3.js" defer></script>
 </head>
 <body>
 <header>
-  <strong>小導演任務 <small style="color:#72efb4">第三堂 · 第二堂按到剪映</small></strong>
-  <nav><a href="./lesson2.html">← 回第二堂</a><a href="./index.html">課程目錄</a><button class="quiet" onclick="DirectorToolbox.open()">🧰 工具箱</button></nav>
+  <a class="brand" href="./index.html">小導演任務 <span>Mr.Bill · 第三堂</span></a>
+  <nav aria-label="課程工具">
+    <button class="quiet" id="teacherToggle" aria-pressed="false">老師備課</button>
+    <button class="quiet" id="recallToggle" aria-pressed="false">CUE 模式</button>
+    <button class="quiet" id="toolboxButton">🧰 工具箱</button>
+  </nav>
 </header>
 <main>
-  <div class="lead">
-    <div class="kicker">配套教學 · 打開剪映跟著點</div>
-    <h1>第二堂會的操作，剪映按鈕在這裡</h1>
-    <p>不用再玩一次模擬器。左邊是剪映的位置，亮起來的就是現在要按的。右邊寫第二堂的任務名稱，以及按下去之後你會看到什麼。</p>
-  </div>
-  <div class="pair">
-    <section class="app" id="app"></section>
-    <aside class="side" id="side"></aside>
-  </div>
-  <div class="dots" id="dots"></div>
+  <section class="intro" aria-label="本堂目標">
+    <div><div class="eyebrow">LEVEL 03 / 剪映電腦版實作</div><h1>今天，真的剪出一支片。</h1>
+    <p>前兩堂會判斷，這一堂讓手跟上。打開剪映，完成一支 <strong>15–30 秒</strong>、有一句字幕的小短片。</p></div>
+    <div class="outcome"><span>今天帶走</span><strong>一個 MP4 影片檔</strong><small>找得到 · 做得出 · 說得出改了什麼</small></div>
+  </section>
+  <div class="bridge"><span>第一堂 <b>想給觀眾看什麼</b></span><i>→</i><span>第二堂 <b>在模擬器練決定</b></span><i>→</i><span class="active">第三堂 <b>在剪映完成作品</b></span></div>
+  <details class="prep"><summary>開始前：老師準備素材，孩子打開剪映</summary>
+    <p>每人一份相同素材：①準備紙飛機（含開頭等待）②試飛（中間含一次等候）③落地與反應。三段合計約 30–45 秒，再準備一段可使用的背景音樂。這些影片需老師課前自備，本頁不附實拍素材。</p>
+    <p>也可換成投籃、積木或自己的遊戲錄影，操作順序一樣。先由老師示範完整原片與成品，讓孩子知道今天要做出什麼。</p>
+    <p>以剪映專業版／CapCut 電腦版帶課。畫面配置、按鈕名稱可能隨版本不同；先找功能名稱，再看位置。投影教材與剪映切換使用，操作時請切回真正的剪映。</p>
+    <p><a href="./guide/lesson3-60min.md">老師的 60 分鐘帶課稿 ↗</a> · <a href="./lesson2.html">回看第二堂</a></p>
+  </details>
+  <nav class="chapters" id="chapters" aria-label="選擇實作步驟"></nav>
+  <section class="lesson" aria-labelledby="stepTitle">
+    <div class="lesson-top"><span class="eyebrow" id="stepMeta"></span><span id="stepCount"></span></div>
+    <h2 id="stepTitle" tabindex="-1"></h2><p class="goal" id="stepGoal"></p>
+    <div class="cue"><span>老師 CUE，你先說</span><h3 id="cueQuestion"></h3><p>先用手指出位置，再說「我要先＿＿，然後＿＿」。</p><button id="revealButton" aria-expanded="false" aria-controls="cueAnswer">說完了，看解答 ↓</button><div id="cueAnswer" class="answer" hidden></div></div>
+    <div class="workspace">
+      <section class="map-panel" aria-label="剪映介面定位練習">
+        <div class="panel-heading"><strong>到真正的剪映，找同一個地方</strong><span>位置示意 · 不是軟體截圖</span></div>
+        <div class="editor-map" id="editorMap">
+          <div class="map-top"><span>媒體　音訊　文字</span><span class="export-tag">匯出 ↗</span></div>
+          <button class="zone library" data-zone="library"><span class="zone-no">1</span><strong>素材庫</strong><small>放原料</small><span class="mini-files">準備 ▧　試飛 ▧<br>結果 ▧　音樂 ♪</span></button>
+          <button class="zone preview" data-zone="preview"><span class="zone-no">2</span><strong>預覽窗</strong><small>看這一刻</small><span class="mini-frame">紙飛機挑戰<br><span>▷</span></span><span class="mini-transport">播放／暫停　　比例</span></button>
+          <button class="zone settings" data-zone="settings"><span class="zone-no">4</span><strong>設定區</strong><small>改選到的東西</small><span class="mini-settings">畫面／文字／音量<br>────●──<br>先選片段<br>再看設定</span></button>
+          <button class="zone timeline" data-zone="timeline"><span class="zone-no">3</span><strong>時間軸</strong><small>排先後、決定出現多久</small><span class="mini-ruler">0 秒 ───── 5 ───── 10 ───── 15</span><span class="mini-track"><em>字</em><i>紙飛機，能飛多遠？</i></span><span class="mini-track"><em>片</em><i>準備</i><i>試飛</i><i>結果</i></span><span class="mini-track sound"><em>聲</em><i>背景音樂</i></span><span class="playhead"></span></button>
+        </div>
+        <p id="mapHelp" class="map-help">點區域，練習說出它的工作。亮框是這一步會用到的位置。</p>
+        <div id="zoneFeedback" class="zone-feedback" role="status"></div>
+      </section>
+      <section class="do-panel" aria-labelledby="doTitle"><span class="eyebrow">切回剪映，跟著做</span><h3 id="doTitle">一次只做這幾件事</h3><ol id="actions"></ol><div class="proof"><span>做完看哪裡？</span><p id="proof"></p></div><details class="rescue"><summary>卡住了？先檢查這裡</summary><p id="rescue"></p></details></section>
+    </div>
+    <aside class="teacher-note" id="teacherNote" hidden></aside>
+    <section id="challenge" class="challenge" hidden aria-label="換情境獨立挑戰"></section>
+    <div class="step-bottom"><label><input id="doneCheck" type="checkbox"> 我已在剪映完成，並看過結果 <small>自己勾選；網頁不會檢查你的剪映</small></label><span id="doneCount" role="status"></span></div>
+  </section>
+  <div class="navigation"><button id="prevButton" class="quiet">← 上一步</button><span>← → 換步驟 · 答案每頁重新揭曉</span><button id="nextButton">下一步 →</button></div>
+  <details class="bonus"><summary>先完成影片，再選一個加分操作：放大畫面／變速</summary>
+    <div class="bonus-grid"><article><h3>只放大某一段</h3><p>先選影片片段 → 右側「畫面／基礎」找「縮放」→ 小幅放大、調整位置 → 播放檢查紙飛機是否還在畫面內。</p><b>CUE：我放大了，為什麼其他段沒變？</b><p>因為我只選了這一段。放大會裁掉周圍，要同時顧到主角和落點。</p></article><article><h3>折紙加快，試飛留原速</h3><p>先把折紙與試飛分成不同片段 → 只選折紙那段 →「變速／常規變速」試 2 倍 → 播放比較，試飛仍維持 1 倍。</p><b>CUE：想保留整個過程，只讓動作變快，要用什麼？</b><p>用變速。拖片段邊緣是拿掉頭尾；不是把全部動作播快。</p></article></div>
+  </details>
+  <p class="footnote">操作功能參考：<a href="https://www.capcut.com/resource/how-to-use-capcut-on-pc" target="_blank" rel="noopener">CapCut 電腦版官方指南</a>、<a href="https://www.capcut.com/resource/split-video-into-parts" target="_blank" rel="noopener">官方分割說明</a>。剪映用詞以課堂電腦為準。</p>
 </main>
-<dialog id="word"><button class="quiet" onclick="word.close()">關閉</button><h2 id="wt"></h2><p id="wd"></p></dialog>
-<script>
-const words={
-  '導入':['把電腦或手機裡的影片，放進這個專案的左邊。','放進來還不等於觀眾會看到，要再拖到下面。'],
-  '時間軸':['下面那幾條。左右就是先後，上下是影片、字幕、聲音。','第二堂你排片段的地方，就是這一條。'],
-  '播放頭':['會移動的白色豎線，代表現在看到第幾秒。','分割前一定先把這條線停在要切的地方。'],
-  '分割':['剪刀。在播放頭的位置把一段切成兩段。','只切不會刪掉。空等還在，要再按刪除。'],
-  '修剪':['拖片段左端或右端，把不要的頭尾拿掉。','人跳得還是一樣快。想變快要另外按變速。'],
-  '變速':['讓這一段播快或播慢。','趕路可以 2 倍，跳躍留 1 倍，不然動作會糊掉。'],
-  '匯出':['把剪好的結果存成一支影片檔。','右上角。短影音選直式 9:16。']
-};
-const steps=[
-  {n:'開始創作',from:'第二堂還沒打開軟體',to:'先開一個直式專案',
-   say:'這一步第二堂沒有。先讓剪映用手機直式，後面字幕和畫面才不會被壓扁。',
-   clicks:['打開剪映專業版，或 CapCut 電腦版。','按「開始創作」。','比例選 9:16，再確定。'],
-   see:'中間是黑的預覽，下面是空的時間軸。',hot:['new']},
-  {n:'素材尋寶',from:'第二堂：按「＋加入」，空等先留在素材庫',to:'剪映：導入，再拖上時間軸',
-   say:'原料放左邊。觀眾要看的，才拖到下面。空等可以先進來，但先不要放上時間軸。',
-   clicks:['按左上「導入」，選今天的影片。','看左邊出現縮圖。','只把起點、接近、跳躍、終點拖到下面的影片軌。'],
-   see:'時間軸出現四段。空等還在左邊。',hot:['import','media']},
-  {n:'故事接片',from:'第二堂：往前／往後，或直接拖',to:'剪映：在時間軸上拖片段',
-   say:'左右順序就是觀眾看到的先後。排成：目的 → 危機 → 解決 → 結果。',
-   clicks:['點一下要移動的那段，它會亮邊。','按住拖到正確的左邊或右邊。','按空白鍵從頭播一次。'],
-   see:'播放時，先看到要做什麼，再看到危險和結果。',hot:['track']},
-  {n:'空等消除',from:'第二堂：播放頭到 3 秒 → 分割 → 刪除',to:'剪映：剪刀切開，再刪',
-   say:'只按分割，空等還在。要點選切出來的那段，再刪除，預覽才會跳過。',
-   clicks:['把播放頭（白色豎線）停在空等要切開的地方。','按時間軸上方的剪刀「分割」。','點不要的那段，按 Delete 或「刪除」。'],
-   see:'時間軸變短，播放不再停在發呆。',hot:['split','head']},
-  {n:'落地救援',from:'第二堂：拖片段邊界，保住起跳和落地',to:'剪映：拖片段兩端來修剪',
-   say:'這不是變快。是把跳躍前後的等待剪掉，人還是原來的速度落地。',
-   clicks:['點「起跳」那段。','滑鼠放在片段最左邊或最右邊，出現雙箭頭。','往內拖，直到剩下起跳和落地。'],
-   see:'這一段變短，但動作沒有變快。',hot:['trim']},
-  {n:'字幕避障',from:'第二堂：短字幕放下面，不擋跳躍',to:'剪映：文字 → 新建文字',
-   say:'字幕在自己的一條軌道。第二堂若下載了 SRT，只是草稿，時間仍要對著真實畫面改。',
-   clicks:['上面選「文字」，再按「新建文字」。','打一句，例如「這一跳，差點沒過」。','在預覽上把字拖到下方，不要蓋住人和平台。'],
-   see:'下面多一條字幕軌，字出現在畫面底部。',hot:['text','caption']},
-  {n:'鏡頭追蹤',from:'第二堂：這一跳改成中景',to:'剪映：選片段，在預覽拉大或拉小',
-   say:'放太近會看不到平台。要同時看見人和落點。',
-   clicks:['點時間軸上的跳躍片段。','預覽窗四角可以拉，或右側找「縮放」。','放大到看清動作，仍留得下落點。'],
-   see:'只有這一段變近，其他段不變。',hot:['screen']},
-  {n:'速度守門',from:'第二堂：接近平台 2 倍，跳躍維持 1 倍',to:'剪映：選那段再按變速',
-   say:'變速和修剪不一樣。變速會讓人跑得比較快；修剪是拿掉一段。',
-   clicks:['只點「接近平台」那段。','按「變速」，設 2 倍。','點跳躍那段，確認還是 1 倍。'],
-   see:'趕路變短、變快；跳躍的速度跟原來一樣。',hot:['speed']},
-  {n:'聲音調音台',from:'第二堂：背景音樂低、提示音留著',to:'剪映：音訊分開拉音量',
-   say:'音樂和原片的聲音是不同條。音樂只做氣氛，不要蓋過該聽見的聲音。',
-   clicks:['按「音訊」，選一段音樂拖到聲音軌。','點音樂那段，把音量拉到大約 25%。','原片若有重要聲音，點影片軌把音量留高。'],
-   see:'播放時聽得見重點，音樂在後面。',hot:['audio','sound']},
-  {n:'首映檢查',from:'第二堂：完整播一次，再帶走計畫',to:'剪映：從頭播放，再匯出',
-   say:'看三件事：有沒有目的、動作有沒有被剪壞、字幕有沒有擋人。沒問題才存檔。',
-   clicks:['播放頭拉回最左邊，完整看一次。','右上角「匯出」。','解析度選清楚的即可，比例維持 9:16。'],
-   see:'電腦多一支影片檔。可以先不上傳。',hot:['export']}
-];
-let i=0;
-function chip(cls,text){return '<div class="chip '+cls+'">'+text+'</div>'}
-function draw(){
-  const s=steps[i];
-  const on=id=>s.hot.includes(id)?' on':'';
-  app.innerHTML=`<div class="appbar"><b>剪映位置圖</b><span>亮框 = 現在要看的地方</span></div>
-    <div class="tools"><span class="tool${on('new')}">開始創作</span><span class="tool${on('import')}">導入</span><span class="tool${on('text')}">文字</span><span class="tool${on('audio')}">音訊</span><span class="tool${on('speed')}">變速</span><span class="tool${on('split')}">✂ 分割</span><span class="tool${on('export')}">匯出</span></div>
-    <div class="body"><div class="media mark${on('media')}"><b style="color:#8ea0b8;font-size:12px">素材庫</b><div class="chip c1" style="margin-top:8px">起點</div><div class="chip c2">空等</div><div class="chip c3">跳躍</div><div class="chip c4">終點</div></div>
-    <div class="screen mark${on('screen')}" style="background:linear-gradient(160deg,#1b3a4a,#0c1218 55%,#243044)"><span class="${on('caption')}">字幕放下面，不擋人</span></div></div>
-    <div class="tools"><span class="mark${on('head')}">播放頭 · 白色豎線</span><span class="mark${on('trim')}">拖兩端 = 修剪</span></div>
-    <div class="tracks"><div class="track mark${on('track')}"><i>影片</i>${chip('c1','起點')}${chip('c3','跳躍')}${chip('c4','終點')}</div>
-    <div class="track"><i>字幕</i><div class="chip${on('caption')}" style="background:#203044">這一跳，差點沒過</div></div>
-    <div class="track mark${on('sound')}"><i>聲音</i><div class="chip" style="flex:1;background:#1a3a4a">音樂音量放低</div></div></div>`;
-  side.innerHTML=`<div class="kicker">第 ${i+1} 步 / ${steps.length} · 對上第二堂</div><h2>${s.n}</h2>
-    <div class="from"><b>第二堂你已經做過</b>${s.from}</div>
-    <div class="to"><b>剪映現在按這裡</b>${s.to}</div>
-    <p class="see">${s.say}</p><ol>${s.clicks.map(x=>'<li>'+x+'</li>').join('')}</ol>
-    <p class="see">按完你會看到：${s.see}</p>
-    <p>詞可以點：${['導入','時間軸','播放頭','分割','修剪','變速','匯出'].map(w=>'<button class="term" data-w="'+w+'">'+w+'</button>').join(' ')}</p>
-    <div class="row"><button class="quiet" id="prev">上一個任務</button><button id="next">${i===steps.length-1?'對照完成':'下一個任務 →'}</button></div>`;
-  prev.onclick=()=>{if(i>0){i--;draw()}};
-  next.onclick=()=>{if(i<steps.length-1){i++;draw()}else side.querySelector('.see').textContent='九個任務都有對應的剪映按鈕了。打開第二堂的操作單，用自己的素材再走一次。'};
-  document.querySelectorAll('.term').forEach(b=>b.onclick=()=>{wt.textContent=b.dataset.w;wd.textContent=words[b.dataset.w].join(' ');word.showModal()});
-  [...dots.children].forEach((b,n)=>b.classList.toggle('now',n===i));
-}
-steps.forEach((s,n)=>{const b=document.createElement('button');b.className='quiet';b.textContent=n+1;b.title=s.n;b.onclick=()=>{i=n;draw()};dots.appendChild(b)});
-draw();
-window.addEventListener('load',()=>{if(window.DirectorToolbox)DirectorToolbox.mount({fab:false})});
-</script>
 </body>
 </html>
